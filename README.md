@@ -13,7 +13,8 @@ A project that contains AWS Lambda function implementations for several runtimes
 |Rust|39.5 ms|0.72 ms|
 |Python|19.8 ms|**0.23 ms**|
 
-[CloudWatch Screenshot](assets/performance/hello-world/hello-world-17-06-19.png)
+### CloudWatch Dashboard Screenshots
+[17-06-2019](assets/performance/hello-world/hello-world-17-06-19.png)
 
 ---
 
