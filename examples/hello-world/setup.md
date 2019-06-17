@@ -1,6 +1,8 @@
 # Hello world Example
 In this example we will just deploy manually a function in AWS Lambda with our desired runtime. Some of the runtimes will be custom, as a result, it will require a bit more work.
 
+Note: We have tested all these functions with 1028 MB of memory
+
 ## Runtime Index
 - [Nodejs 8.10](#nodejs-810)
 - [Python 3.6](#python-36)
@@ -90,6 +92,17 @@ exports.handler = async (event, context, callback) => {
 - `Save` and Test the event by clicking `Test` in the top right corner
 
 ## Java
+- First of all, install [Gradle](https://gradle.org/install/)
+- Change directory to `examples/hello-world/java`
+- Build the project, `gradle build`
+- Go to `AWS Lambda` in AWS Console
+- Create new function from Scratch
+- Enter function name and select `Java 8` as runtime
+- Choose the execution role we created above
+- `Upload the zip file benchmarks-java-dev-all.jar` we created as function code
+- Input `com.theagilemonkeys.labs.HelloWorldHandler` as the `Handler`
+- Click `Save`
+- Test the function by clicking `Test` in the top right corner
 
 ## Rust
 - First of all, install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html) and `musl-cross` `brew install filosottile/musl-cross/musl-cross`
@@ -119,4 +132,4 @@ exports.handler = async (event, context, callback) => {
 
 ## Haskell runtime Bootstrapped
 
-## Go
+## Go
