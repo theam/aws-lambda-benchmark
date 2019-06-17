@@ -16,10 +16,9 @@ Note: We have tested all these functions with 1028 MB of memory
 
 We need to create a very basic IAM Role that we will assign to each of the functions we create. We will go to `IAM Role` in the AWS Console to get started.
 
-In order to allow logging and invoking Lambda functions we will add the following `CloudWatch Logs` and `Lambda` permissions to the IAM role:
+In order to allow logging we will add the following `CloudWatch Logs` permissions to the IAM role:
 ```
 logs:CreateLogStream
-lambda:InvokeFunction
 logs:CreateLogGroup
 logs:PutLogEvents
 ```
