@@ -1,0 +1,18 @@
+service: benchmarks-java
+
+provider:
+  name: aws
+  stage: labs
+  runtime: java8
+  region: us-east-1
+  profile: theam
+
+package:
+  artifact: build/libs/benchmarks-java-dev-all.jar
+
+functions:
+  benchmark-java-hello:
+    name: benchmark-java-hello
+    handler: com.theagilemonkeys.labs.HelloWorldHandler
+    events:
+        - http: GET java-hello
