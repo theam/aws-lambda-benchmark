@@ -1,0 +1,16 @@
+[package]
+name = "benchmark-rust-hello"
+version = "0.1.0"
+authors = ["Tai Nguyen Bui <tai@theagilemonkeys.com>"]
+edition = "2018"
+
+[dependencies]
+serde = "1.0.80"
+serde_derive = "1.0.80"
+lambda_runtime = "0.1.0"
+log = "^0.4"
+simple_logger = "^1"
+
+[[bin]]
+name = "bootstrap"
+path = "src/main.rs"
