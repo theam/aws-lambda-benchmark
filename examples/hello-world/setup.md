@@ -4,6 +4,11 @@ In this example we will just deploy manually a function in AWS Lambda with our d
 ## Runtime Index
 - [Nodejs 8.10](#nodejs-810)
 - [Python 3.6](#python-36)
+- [Java](#java)
+- [Rust](#rust)
+- [Haskell (Layer)](#Haskell-with-custom-runtime)
+- [Haskell (Runtime Bootstrapped)]()
+- [Go](#go)
 
 ## Setting up Lambda IAM Role
 
@@ -84,6 +89,8 @@ exports.handler = async (event, context, callback) => {
 `lambda_function.lambda_handler`
 - `Save` and Test the event by clicking `Test` in the top right corner
 
+## Java
+
 ## Rust
 - First of all, install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html) and `musl-cross` `brew install filosottile/musl-cross/musl-cross`
 - Set link: `ln -s /usr/local/bin/x86_64-linux-musl-gcc /usr/local/bin/musl-gcc`
@@ -97,7 +104,7 @@ exports.handler = async (event, context, callback) => {
 - `Upload the zip file rust.zip` we created as function code and click `save`
 - Test the function by clicking `Test` in the top right corner
 
-## Haskell with Custom Runtime (Layer)
+## Haskell with custom runtime
 - First of all, install [Stack](https://docs.haskellstack.org/en/stable/README/)
 - Install [Docker](https://docs.docker.com/docker-for-mac/install/)
 - build project by running `make`
@@ -110,3 +117,6 @@ exports.handler = async (event, context, callback) => {
 - Click on `Layers` and add `arn:aws:lambda:us-east-1:785355572843:layer:aws-haskell-runtime:6`
 - Click `Save` and then Test the function by clicking `Test` in the top right corner
 
+## Haskell runtime Bootstrapped
+
+## Go
