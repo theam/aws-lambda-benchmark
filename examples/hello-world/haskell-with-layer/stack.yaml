@@ -1,11 +1,9 @@
-user-message: |
-  Warning (added by new or init): Some packages were found to be incompatible with the resolver and have been left commented out in the packages section.
-  You can omit this message by removing it from stack.yaml
-
-resolver: lts-12.13
+resolver: lts-13.25
 
 packages:
 - .
 
 extra-deps:
-- aws-lambda-haskell-runtime-1.0.10
+# - github: theam/aws-lambda-haskell-runtime
+#   commit: 64300e25d55967315b0b3222584c80f4c2a53b46
+- /Users/nick/Code/aws-lambda-haskell-runtime
