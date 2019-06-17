@@ -9,7 +9,7 @@ Note: We have tested all these functions with 1028 MB of memory
 - [Java](#java)
 - [Rust](#rust)
 - [Haskell (Layer)](#Haskell-with-custom-runtime)
-- [Haskell (Runtime Bootstrapped)]()
+- [Haskell (Runtime Bootstrapped)](#Haskell-runtime-Bootstrapped)
 - [Go](#go)
 
 ## Setting up Lambda IAM Role
