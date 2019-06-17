@@ -31,3 +31,15 @@ and then run a quick test that will perform 10 rps per second during 10 seconds 
 AWS CloudWatch is the service where you could find Analytics about your Lambda function. Information about execution time, # invocations, # errors or # throttles. Go to `AWS CloudWatch` in the AWS Console.
 
 - Click on `Dashboards` and `Create Dashboard`
+- Create the first `Widget` of type `Number`
+- Select `Lambda` as the source for your metric
+- Select `By Function Name`
+- And click on all the metrics that you want to track for you would like to track e.g. `Duration`, `Errors`
+- Click `Create Widget` and you will see the metrics being displayed
+
+![](assets/cloudwatch/cloudwatch-lambda-metrics.png)
+
+In this example, we selected the following metrics:
+
+![](assets/cloudwatch/cloudwatch-lambda-metrics-selection.png)
+
