@@ -3,6 +3,7 @@ In this example we will just deploy manually a function in AWS Lambda with our d
 
 ## Runtime Index
 - [Nodejs 8.10](#nodejs-810)
+- [Python 3.6](#python-36)
 
 ## Setting up Lambda IAM Role
 
@@ -57,6 +58,28 @@ exports.handler = async (event, context, callback) => {
 ```
 - Input the `Handler`
 `index.handler`
-- Test the event by clicking `Test` in the top right corner
+- `Save` and Test the event by clicking `Test` in the top right corner
 
+## Python 3.6
+- Create a `Function from Scratch` and choose a name for the function, e.g. `benchmark-python-hello`
+- Choose the correct runtime `Python 3.6`
+- Select the `execution role` that you just created above
+- Click `Create the function`
+- Paste the following code
 
+```
+exports.handler = async (event, context, callback) => {
+
+    var response = {
+        statusCode: 200,
+        body: JSON.stringify("hello"),
+        isBase64Encoded: false
+    };
+    
+    callback(null, response)
+};
+```
+
+- Input the `Handler`
+`lambda_function.lambda_handler`
+- `Save` and Test the event by clicking `Test` in the top right corner
