@@ -4,6 +4,18 @@ A project that contains AWS Lambda function implementations for several runtimes
 ## Examples
 [Hello World](examples/hello-world/setup.md)
 
+|Runtime|Max Cold Start|Min execution time|
+|--------|----------|------------------|
+|Haskell|971 ms|12.6 ms|
+|Java|790 ms|1.1 ms|
+|Nodejs|4.99 ms| 0.26 ms|
+|Go|**1.39 ms**|0.33 ms|
+|Rust|39.5 ms|0.72 ms|
+|Python|19.8 ms|**0.23 ms**|
+[CloudWatch Screenshot](assets/performance/hello-world/hello-world-17-06-19.png)
+
+---
+
 ## Triggering your function through API Gateway
 
 First of all, we will need to create a few resources before we can trigger our Lambda Function. Go to `API Gateway` in the AWS Console.
@@ -14,6 +26,13 @@ First of all, we will need to create a few resources before we can trigger our L
 - Within that resource, create a `method` `GET`, enable `Use Lambda Proxy Integration` and type the name of your function under `Lambda Function`
 - Finally click `save` and click `deploy` under the dropdown menu of `Actions`
 - Your endpoint URL will be: <Method> <stage-invoke-url>/<resource-name>, e.g. GET https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/dev/nodejs-hello
+
+**If you experience 403 errors when triggering your endpoint, go to `Actions` and click `Deploy API`**
+
+**Note: This API Gateway could be reused for many different Lambda functions by creating a `resource` for each of them**
+
+<img src="./assets/apigateway/apigateway-resources.png" width="150">
+
 
 ## Using Artillery for testing
 
