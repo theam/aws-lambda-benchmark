@@ -10,7 +10,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
 - base >= 4.7 && < 5
-- aws-lambda-haskell-runtime >= 1.0.9
+- aws-lambda-haskell-runtime >= 1.1.1
 - aeson
 
 library:
@@ -24,6 +24,7 @@ executables:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -O2
     dependencies:
     - my-haskell-lambda
 
@@ -33,3 +34,4 @@ default-extensions:
   - OverloadedLists
   - OverloadedStrings
   - DeriveGeneric
+  - DeriveAnyClass

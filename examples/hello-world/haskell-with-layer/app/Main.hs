@@ -1,7 +1,6 @@
 module Main where
 
-import Aws.Lambda.Configuration
-import Aws.Lambda.Runtime
+import Aws.Lambda
 
 import qualified Lib
 
