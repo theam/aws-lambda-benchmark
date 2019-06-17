@@ -107,7 +107,7 @@ exports.handler = async (event, context, callback) => {
 ## Haskell with custom runtime
 - First of all, install [Stack](https://docs.haskellstack.org/en/stable/README/)
 - Install [Docker](https://docs.docker.com/docker-for-mac/install/)
-- build project by running `make`
+- build project by running `make` in `examples/hello-world/haskell-with-layer`
 - Go to `AWS Lambda` in AWS Console
 - Create new function from Scratch
 - Enter function name and select `Provide your own bootstrap`
