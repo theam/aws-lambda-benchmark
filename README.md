@@ -10,20 +10,20 @@ A project that contains AWS Lambda function implementations for several runtimes
 ## Examples
 [Hello World](examples/hello-world/setup.md)
 
-|Runtime|Max Cold Start|Min execution time|
-|--------|----------|------------------|
-|Haskell|132 ms|12.5 ms|
-|Java|790 ms|1.1 ms|
-|Nodejs|4.99 ms| 0.26 ms|
-|Go|**1.39 ms**|0.33 ms|
-|Rust|39.5 ms|0.72 ms|
-|Python|19.8 ms|**0.23 ms**|
+|**Runtime**|**Best Cold Start**|**Worst Cold Start**|**execution time**|
+|-------|---------------|----------------|------------------|
+|**Haskell**|132 ms|132 ms|12.50 ms|
+|**Java**|790 ms|**801 ms**|0.89 ms|
+|**Nodejs**|3.85 ms|4.99 ms| 0.26 ms|
+|**Go**|**1.39 ms**|7.60 ms|0.25 ms|
+|**Rust**|39.1 ms|39.5 ms|0.70 ms|
+|**Python**|15.9 ms|19.8 ms|**0.22 ms**|
 
 ### CloudWatch Dashboard Screenshots
-[18-06-2019](assets/)
+**18-06-2019** [Screenshot](assets/performance/hello-world/hello-world-18-06-19.png)
 - Improvements in [Lambda Haskell Runtime](https://github.com/theam/aws-lambda-haskell-runtime/pull/29)  
 
-[17-06-2019](assets/performance/hello-world/hello-world-17-06-19.png)
+**17-06-2019** [Screenshot](assets/performance/hello-world/hello-world-17-06-19.png)
 - Baseline
 
 ---
