@@ -40,7 +40,7 @@ functions:
   updateProduct:
     handler: com.theagilemonkeys.labs.handlers.UpdateProductHandler
     events:
-      - http: PATCH /product
+      - http: PATCH /product/{sku}
   deleteProduct:
     handler: com.theagilemonkeys.labs.handlers.DeleteProductHandler
     events:

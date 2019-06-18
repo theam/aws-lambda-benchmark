@@ -19,6 +19,6 @@ class Product(
         val PRODUCTS_TABLE_NAME = System.getenv("PRODUCTS_TABLE_NAME")
         const val SKU_FIELD = "sku"
         const val NAME_FIELD = "name"
-        const val DESCRIPTION_FIELD = "name"
+        const val DESCRIPTION_FIELD = "description"
     }
 }

@@ -37,7 +37,7 @@ class ProductService {
             it.description = description ?: it.description
             it.name = name ?: it.name
             dbMapper.save(it)
-            return@let it
+            return it
         }
         throw(IOException("Product not found"))
     }
