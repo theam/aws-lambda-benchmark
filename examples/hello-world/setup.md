@@ -8,7 +8,7 @@ Note: We have tested all these functions with 1028 MB of memory
 - [Python 3.6](#python-36)
 - [Java](#java)
 - [Rust](#rust)
-- [Haskell](#Haskell-with-custom-runtime)
+- [Haskell](#Haskell)
 - [Haskell (Runtime Bootstrapped)](#Haskell-runtime-Bootstrapped)
 - [Go](#go)
 
