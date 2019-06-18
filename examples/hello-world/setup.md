@@ -8,7 +8,7 @@ Note: We have tested all these functions with 1028 MB of memory
 - [Python 3.6](#python-36)
 - [Java](#java)
 - [Rust](#rust)
-- [Haskell (Layer)](#Haskell-with-custom-runtime)
+- [Haskell](#Haskell)
 - [Haskell (Runtime Bootstrapped)](#Haskell-runtime-Bootstrapped)
 - [Go](#go)
 
@@ -116,17 +116,17 @@ exports.handler = async (event, context, callback) => {
 - `Upload the zip file rust.zip` we created as function code and click `save`
 - Test the function by clicking `Test` in the top right corner
 
-## Haskell with custom runtime
+## Haskell
 - First of all, install [Stack](https://docs.haskellstack.org/en/stable/README/)
 - Install [Docker](https://docs.docker.com/docker-for-mac/install/)
-- build project by running `make` in `examples/hello-world/haskell-with-layer`
+- Download Docker Stack image `docker pull fpco/stack-build:lts-13.25`
+- build project by running `make` in `examples/hello-world/haskell`
 - Go to `AWS Lambda` in AWS Console
 - Create new function from Scratch
 - Enter function name and select `Provide your own bootstrap`
 - Choose the execution role we created above
 - `Upload the zip file function.zip` located in `./build` as function code
 - Enter `src/Lib.handler` as the `Handler`
-- Click on `Layers` and add `arn:aws:lambda:us-east-1:785355572843:layer:aws-haskell-runtime:6`
 - Click `Save` and then Test the function by clicking `Test` in the top right corner
 
 ## Haskell runtime Bootstrapped

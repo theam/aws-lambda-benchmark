@@ -1,9 +1,0 @@
-resolver: lts-13.25
-
-packages:
-- .
-
-extra-deps:
-# - github: theam/aws-lambda-haskell-runtime
-#   commit: 64300e25d55967315b0b3222584c80f4c2a53b46
-- /Users/nick/Code/aws-lambda-haskell-runtime
