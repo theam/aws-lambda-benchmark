@@ -1,0 +1,64 @@
+service: rest-api-java
+
+provider:
+  name: aws
+  runtime: java8
+  stage: ${opt:stage, 'dev'}
+  region: ${self:provider.environment.REGION}
+  environment:
+    REGION: us-east-1
+    PRODUCTS_TABLE_NAME: "${self:custom.productsTableName}"
+  profile: default
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "dynamodb:*"
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "*"
+
+custom:
+   productsTableName: products-table-${self:provider.stage}
+
+package:
+  artifact: build/libs/rest-api-java-dev-all.jar
+
+functions:
+  listProducts:
+    handler: com.theagilemonkeys.labs.handlers.ListProductsHandler
+    events:
+      - http: GET /products
+  getProduct:
+    handler: com.theagilemonkeys.labs.handlers.GetProductHandler
+    events:
+      - http: GET /product/{sku}
+  createProduct:
+    handler: com.theagilemonkeys.labs.handlers.CreateProductHandler
+    events:
+      - http: POST /product
+  updateProduct:
+    handler: com.theagilemonkeys.labs.handlers.UpdateProductHandler
+    events:
+      - http: PATCH /product
+  deleteProduct:
+    handler: com.theagilemonkeys.labs.handlers.DeleteProductHandler
+    events:
+      - http: DELETE /product/{sku}
+
+
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.productsTableName}
+        AttributeDefinitions:
+          - AttributeName: sku
+            AttributeType: S
+        KeySchema:
+          - AttributeName: sku
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

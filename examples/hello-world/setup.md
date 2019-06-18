@@ -132,3 +132,37 @@ exports.handler = async (event, context, callback) => {
 ## Haskell runtime Bootstrapped
 
 ## Go
+- Install [Go](https://golang.org/dl/)
+- Create a `hello.go` file with the following content:
+```go
+package main
+
+import "github.com/aws/aws-lambda-go/lambda"
+
+type Response struct {
+	StatusCode      int    `json:"statusCode"`
+	Body            string `json:"body"`
+	IsBase64Encoded bool   `json:"isBase64Encoded"`
+}
+
+func hello() (Response, error) {
+	return Response{
+		StatusCode:      200,
+		Body:            "Hello world",
+		IsBase64Encoded: false,
+	}, nil
+}
+
+func main() {
+	lambda.Start(hello)
+}
+```
+- Build the program for AWS Lambda: `GOOS=linux GOARCH=amd64 go build hello.go`
+- Zip the binnary: `zip hello.zip ./hello
+- Go to `AWS Lambda` in AWS Console and create a new function from scratch
+- Enter function name "benchmark-go-hello" and select "Go 1.x" as runtime
+- Choose the execution role created above
+- Upload the zip file we created as function code
+- Input "hello" in "Handler" (it should be the name of the executable)
+- Click "Save"
+- Test the function by clicking `Test` in the top right corner
