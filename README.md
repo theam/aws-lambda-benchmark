@@ -48,18 +48,26 @@ First of all, we will need to create a few resources before we can trigger our L
 
 ## Using Artillery for testing
 
-If you don't have artillery install,
+Install `serverless`, `artillery` and `serverless-artillery` if you don't have them yet
 
-`yarn global add artillery`
-or
-`npm install --global artillery`
+```bash
+yarn global add serverless
+yarn global add artillery
+yarn global add serverless-artillery
+```
+or 
+```bash
+npm install --global serverless
+npm install --global artillery
+npm install --global serverless-artillery
+```
 
-### Manual Approach
+### Manual Testing Approach
 Run a quick test that will perform 10 rps per second during 10 seconds coming from 10 different sources each second
 
 `artillery quick --duration 10 --rate 10 -n 1 https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/dev/nodejs-hello`
 
-### Automated Approach
+### Automated Testing Approach
 Go to the example artillery directory, e.g. `cd examples/hello-world/artillery`
 
 and then run the following command:
