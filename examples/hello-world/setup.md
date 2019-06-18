@@ -104,7 +104,8 @@ exports.handler = async (event, context, callback) => {
 - Test the function by clicking `Test` in the top right corner
 
 ## Rust
-- First of all, install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html) and `musl-cross` `brew install filosottile/musl-cross/musl-cross`
+- First of all, install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
+- Install musl-cross `brew install filosottile/musl-cross/musl-cross`
 - Set link: `ln -s /usr/local/bin/x86_64-linux-musl-gcc /usr/local/bin/musl-gcc`
 - Change directory to `examples/hello-world/rust`
 - Build function: `cargo build --release --target x86_64-unknown-linux-musl`
@@ -115,6 +116,8 @@ exports.handler = async (event, context, callback) => {
 - Choose the execution role we created above
 - `Upload the zip file rust.zip` we created as function code and click `save`
 - Test the function by clicking `Test` in the top right corner
+
+**Note: In this function we do not need to specify the handler since all you need is in the binary**
 
 ## Haskell
 - First of all, install [Stack](https://docs.haskellstack.org/en/stable/README/)
