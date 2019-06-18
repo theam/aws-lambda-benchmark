@@ -17,7 +17,7 @@ class CreateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGate
 
     override fun handleRequest(request: APIGatewayProxyRequestEvent, context: Context): APIGatewayProxyResponseEvent {
         return try {
-            request.body ?: return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku or name are required")
+            request.body ?: return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")
 
             val requestBody = Gson().fromJson(request.body, JsonObject::class.java)
             val sku = requestBody.get(Product.SKU_FIELD)?.asString
@@ -25,10 +25,10 @@ class CreateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGate
             val description = requestBody.get(Product.DESCRIPTION_FIELD)?.asString
 
             if (sku.isNullOrEmpty() || name.isNullOrEmpty()) {
-                return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku or name are required")
+                return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")
             }
 
-            val product = productService.updateProduct(sku, name, description)
+            val product = productService.createProduct(sku, name, description)
             generateOKResponse(ProductResponse(product))
 
         } catch (e: Exception) {
