@@ -27,6 +27,8 @@ A project that contains AWS Lambda function implementations for several runtimes
 **17-06-2019** [Screenshot](assets/performance/hello-world/hello-world-17-06-19.png)
 - Baseline
 
+[CRUD HOW-TO](examples/rest-api/setup.md)
+
 ---
 
 ## Manually deploying Lambda functions
