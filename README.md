@@ -54,9 +54,19 @@ If you don't have artillery install,
 or
 `npm install --global artillery`
 
-and then run a quick test that will perform 10 rps per second during 10 seconds coming from 10 different sources each second
+### Manual Approach
+Run a quick test that will perform 10 rps per second during 10 seconds coming from 10 different sources each second
 
 `artillery quick --duration 10 --rate 10 -n 1 https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/dev/nodejs-hello`
+
+### Automated Approach
+Go to the example artillery directory, e.g. `cd examples/hello-world/artillery`
+
+and then run the following command:
+
+`slsart invoke -p artillery-test.yml`
+
+This will trigger a set requests for each of the languages we are currently benchmarking in the `hello-world` example.
 
 ## Creating a Dashboard using AWS CloudWatch
 AWS CloudWatch is the service where you could find Analytics about your Lambda function. Information about execution time, # invocations, # errors or # throttles. Go to `AWS CloudWatch` in the AWS Console.

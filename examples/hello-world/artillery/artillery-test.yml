@@ -1,0 +1,22 @@
+config:
+  target: 'https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/labs'
+  phases:
+    - duration: 30
+      arrivalRate: 30
+      number: 1
+scenarios:
+  - flow:
+    - get:
+        url: '/go-hello'
+    - get:
+        url: '/haskell-hello'
+    - get:
+        url: '/haskell-optimized-hello'
+    - get:
+        url: '/java-hello'
+    - get:
+        url: '/js-hello'
+    - get:
+        url: '/python-hello'
+    - get:
+        url: '/rust-hello'
