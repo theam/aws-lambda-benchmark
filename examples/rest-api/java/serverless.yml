@@ -27,7 +27,7 @@ provider:
         - { Fn::GetAtt: [ProductsTable, Arn] }
 
 custom:
-   productsTableName: products-table-${self:provider.stage}
+   productsTableName: products-table-java-${self:provider.stage}
 
 package:
   artifact: build/libs/rest-api-java-dev-all.jar
