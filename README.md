@@ -8,7 +8,7 @@ A project that contains AWS Lambda function implementations for several runtimes
 - [Creating a Dashboard using AWS CloudWatch](#Creating-a-Dashboard-using-AWS-CloudWatch)
 
 ## Examples
-[Hello World](examples/hello-world/setup.md)
+[Hello World HOW-TO](examples/hello-world/setup.md)
 
 |**Runtime**|**Best Cold Start**|**Worst Cold Start**|**execution time**|
 |-------|---------------|----------------|------------------|
