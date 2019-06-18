@@ -3,6 +3,7 @@ A project that contains AWS Lambda function implementations for several runtimes
 
 - [Examples and Performance](#examples)
 - [CloudWatch Dashboard Screenshots](#cloudwatch-dashboard-screenshots)
+- [Manually Deploying Lambda function](#Manually-deploying-Lambda-functions)
 - [Triggering your function through API Gateway](#Triggering-your-function-through-API-Gateway)
 - [Using Artillery for testing](#Using-Artillery-for-testing)
 - [Creating a Dashboard using AWS CloudWatch](#Creating-a-Dashboard-using-AWS-CloudWatch)
@@ -28,8 +29,8 @@ A project that contains AWS Lambda function implementations for several runtimes
 
 ---
 
-## Deploying Lambda functions
-We have avaiable a set of examples that will give you all the stuff required to get your function deployed in AWS.
+## Manually deploying Lambda functions
+We have avaliable a set of examples that will give you all the stuff required to get your function deployed in AWS.
 
 For example, [this page](examples/hello-world/setup.md) gives you a step by step guide on how to deploy a Rust Lambda function.
 The `Hello-World` code we used for benchmarking is [here](examples/hello-world)
