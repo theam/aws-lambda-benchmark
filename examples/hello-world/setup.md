@@ -119,6 +119,7 @@ exports.handler = async (event, context, callback) => {
 ## Haskell with custom runtime
 - First of all, install [Stack](https://docs.haskellstack.org/en/stable/README/)
 - Install [Docker](https://docs.docker.com/docker-for-mac/install/)
+- Download Docker Stack image `docker pull fpco/stack-build:lts-13.25`
 - build project by running `make` in `examples/hello-world/haskell-with-layer`
 - Go to `AWS Lambda` in AWS Console
 - Create new function from Scratch

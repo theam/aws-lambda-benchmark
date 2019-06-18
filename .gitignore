@@ -7,3 +7,5 @@ Cargo.lock
 # Haskell
 .stack-work
 **/hello-world/**/build
+Setup.hi
+Setup.o
