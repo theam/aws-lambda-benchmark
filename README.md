@@ -8,25 +8,31 @@ A project that contains AWS Lambda function implementations for several runtimes
 - [Creating a Dashboard using AWS CloudWatch](#Creating-a-Dashboard-using-AWS-CloudWatch)
 
 ## Examples
-[Hello World](examples/hello-world/setup.md)
+[Hello World HOW-TO](examples/hello-world/setup.md)
 
-|Runtime|Max Cold Start|Min execution time|
-|--------|----------|------------------|
-|Haskell|132 ms|12.5 ms|
-|Java|790 ms|1.1 ms|
-|Nodejs|4.99 ms| 0.26 ms|
-|Go|**1.39 ms**|0.33 ms|
-|Rust|39.5 ms|0.72 ms|
-|Python|19.8 ms|**0.23 ms**|
+|**Runtime**|**Best Cold Start**|**Worst Cold Start**|**execution time**|
+|-------|---------------|----------------|------------------|
+|**Haskell**|132 ms|132 ms|12.50 ms|
+|**Java**|790 ms|**801 ms**|0.89 ms|
+|**Nodejs**|3.85 ms|4.99 ms| 0.26 ms|
+|**Go**|**1.39 ms**|7.60 ms|0.25 ms|
+|**Rust**|39.1 ms|39.5 ms|0.70 ms|
+|**Python**|15.9 ms|19.8 ms|**0.22 ms**|
 
 ### CloudWatch Dashboard Screenshots
-[18-06-2019](assets/)
+**18-06-2019** [Screenshot](assets/performance/hello-world/hello-world-18-06-19.png)
 - Improvements in [Lambda Haskell Runtime](https://github.com/theam/aws-lambda-haskell-runtime/pull/29)  
 
-[17-06-2019](assets/performance/hello-world/hello-world-17-06-19.png)
+**17-06-2019** [Screenshot](assets/performance/hello-world/hello-world-17-06-19.png)
 - Baseline
 
 ---
+
+## Deploying Lambda functions
+We have avaiable a set of examples that will give you all the stuff required to get your function deployed in AWS.
+
+For example, [this page](examples/hello-world/setup.md) gives you a step by step guide on how to deploy a Rust Lambda function.
+The `Hello-World` code we used for benchmarking is [here](examples/hello-world)
 
 ## Triggering your function through API Gateway
 
@@ -48,15 +54,33 @@ First of all, we will need to create a few resources before we can trigger our L
 
 ## Using Artillery for testing
 
-If you don't have artillery install,
+Install `serverless`, `artillery` and `serverless-artillery` if you don't have them yet
 
-`yarn global add artillery`
-or
-`npm install --global artillery`
+```bash
+yarn global add serverless
+yarn global add artillery
+yarn global add serverless-artillery
+```
+or 
+```bash
+npm install --global serverless
+npm install --global artillery
+npm install --global serverless-artillery
+```
 
-and then run a quick test that will perform 10 rps per second during 10 seconds coming from 10 different sources each second
+### Manual Testing Approach
+Run a quick test that will perform 10 rps per second during 10 seconds coming from 10 different sources each second
 
 `artillery quick --duration 10 --rate 10 -n 1 https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/dev/nodejs-hello`
+
+### Automated Testing Approach
+Go to the example artillery directory, e.g. `cd examples/hello-world/artillery`
+
+and then run the following command:
+
+`slsart invoke -p artillery-test.yml`
+
+This will trigger a set requests for each of the languages we are currently benchmarking in the `hello-world` example.
 
 ## Creating a Dashboard using AWS CloudWatch
 AWS CloudWatch is the service where you could find Analytics about your Lambda function. Information about execution time, # invocations, # errors or # throttles. Go to `AWS CloudWatch` in the AWS Console.
