@@ -1,12 +1,18 @@
 # aws-lambda-benchmark
 A project that contains AWS Lambda function implementations for several runtimes e.g. Nodejs, Haskell, Python, Go, Rust, Java, etc.
 
+- [Examples and Performance](#examples)
+- [CloudWatch Dashboard Screenshots](#cloudwatch-dashboard-screenshots)
+- [Triggering your function through API Gateway](#Triggering-your-function-through-API-Gateway)
+- [Using Artillery for testing](#Using-Artillery-for-testing)
+- [Creating a Dashboard using AWS CloudWatch](#Creating-a-Dashboard-using-AWS-CloudWatch)
+
 ## Examples
 [Hello World](examples/hello-world/setup.md)
 
 |Runtime|Max Cold Start|Min execution time|
 |--------|----------|------------------|
-|Haskell|971 ms|12.6 ms|
+|Haskell|132 ms|12.5 ms|
 |Java|790 ms|1.1 ms|
 |Nodejs|4.99 ms| 0.26 ms|
 |Go|**1.39 ms**|0.33 ms|
@@ -14,7 +20,11 @@ A project that contains AWS Lambda function implementations for several runtimes
 |Python|19.8 ms|**0.23 ms**|
 
 ### CloudWatch Dashboard Screenshots
+[18-06-2019](assets/)
+- Improvements in [Lambda Haskell Runtime](https://github.com/theam/aws-lambda-haskell-runtime/pull/29)  
+
 [17-06-2019](assets/performance/hello-world/hello-world-17-06-19.png)
+- Baseline
 
 ---
 
