@@ -8,15 +8,23 @@ provider:
   environment:
     REGION: us-east-1
     PRODUCTS_TABLE_NAME: "${self:custom.productsTableName}"
-  profile: default
   iamRoleStatements:
-    - Effect: "Allow"
+    - Effect: Allow
       Action:
-        - "dynamodb:*"
         - logs:CreateLogGroup
         - logs:CreateLogStream
         - logs:PutLogEvents
       Resource: "*"
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:DeleteItem
+        - dynamodb:Query
+        - dynamodb:Scan
+      Resource:
+        - { Fn::GetAtt: [ProductsTable, Arn] }
 
 custom:
    productsTableName: products-table-${self:provider.stage}
@@ -59,6 +67,4 @@ resources:
         KeySchema:
           - AttributeName: sku
             KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 1
-          WriteCapacityUnits: 1
+        BillingMode: PAY_PER_REQUEST
