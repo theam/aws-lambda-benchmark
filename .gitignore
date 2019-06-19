@@ -19,3 +19,8 @@ Setup.o
 
 # Python
 __pycache__
+
+# Dotnet
+**/dotnet21/bin
+**/dotnet21/obj
+**/dotnet21/**.zip

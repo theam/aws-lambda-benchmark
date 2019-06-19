@@ -19,15 +19,16 @@ A project that contains AWS Lambda function implementations for several runtimes
 |**Nodejs**|3.85 ms|43.8 ms| 0.26 ms|
 |**Go**|**1.39 ms**|7.60 ms|0.25 ms|
 |**Rust**|39.1 ms|58.7 ms|0.70 ms|
-|**Python**|15.9 ms|33.2 ms|**0.22 ms**|
+|**Python**|15.9 ms|33.2 ms|0.22 ms|
 |**Ruby**|11.5 ms|--|1.42 ms|
+|**Dotnet2.1**|631 ms|--|**0.17 ms**|
 
 **Notes: 1024 MB of memory**
 
 ### CloudWatch Dashboard Screenshots
 **19-06-2019** [Screenshot](assets/performance/hello-world/hello-world-19-06-19.png)
 - Improvements in [Lambda Haskell Runtime](pending PR details)
-- Added Ruby 2.5 to Benchmarks
+- Added Ruby 2.5 and Dotnet 2.1 to Benchmarks
 
 **18-06-2019** [Screenshot](assets/performance/hello-world/hello-world-18-06-19.png)
 - Improvements in [Lambda Haskell Runtime](https://github.com/theam/aws-lambda-haskell-runtime/pull/29)  

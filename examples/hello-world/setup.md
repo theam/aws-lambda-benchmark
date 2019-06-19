@@ -12,6 +12,7 @@ Note: We have tested all these functions with 1028 MB of memory
 - [Haskell (Runtime Bootstrapped)](#Haskell-runtime-Bootstrapped)
 - [Go](#go)
 - [Ruby](#ruby-25)
+- [C#](#c-net-21)
 
 ## Setting up Lambda IAM Role
 
@@ -189,3 +190,18 @@ end
 - Input the `Handler`
 `lambda_function.lambda_handler`
 - `Save` and Test the event by clicking `Test` in the top right corner
+
+## C# .Net 2.1
+- Install [.Net](https://dotnet.microsoft.com/) in your machine
+- Install `C#` extension for VSCode
+- Change directory to `examples/hello-world/dotnet21`
+- Build the project, `dotnet build`
+- Zip the project to upload it to AWS Lambda, `dotnet lambda package -c Release -o ./HelloWorldLambda.zip -f netcoreapp2.1`
+- Go to `AWS Lambda` in AWS Console and create a new function from scratch
+- Enter function name "benchmark-csharp-hello" and select ".NET Core 2.1 (C#/PowerShell)" as runtime
+- Choose the execution role created above
+- Upload the zip file we created as function code
+- Input "dotnet21::dotnet21.Hello::Handler" in "Handler"
+- Click "Save"
+- Test the function by clicking `Test` in the top right corner
+

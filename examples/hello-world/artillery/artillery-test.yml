@@ -22,3 +22,5 @@ scenarios:
         url: '/rust-hello'
     - get:
         url: '/ruby-hello'
+    - get:
+        url: '/dotnet21-hello'
