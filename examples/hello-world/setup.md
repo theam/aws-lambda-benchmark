@@ -11,6 +11,7 @@ Note: We have tested all these functions with 1028 MB of memory
 - [Haskell](#Haskell)
 - [Haskell (Runtime Bootstrapped)](#Haskell-runtime-Bootstrapped)
 - [Go](#go)
+- [Ruby](#ruby-25)
 
 ## Setting up Lambda IAM Role
 
@@ -169,3 +170,22 @@ func main() {
 - Input "hello" in "Handler" (it should be the name of the executable)
 - Click "Save"
 - Test the function by clicking `Test` in the top right corner
+
+## Ruby 2.5
+- Create a `Function from Scratch` and choose a name for the function, e.g. `benchmark-python-hello`
+- Choose the correct runtime `Ruby 2.5`
+- Select the `execution role` that you just created above
+- Click `Create the function`
+- Paste the following code
+
+```
+require 'json'
+
+def lambda_handler(event:, context:)
+    { statusCode: 200, body: JSON.generate('Hello') }
+end
+```
+
+- Input the `Handler`
+`lambda_function.lambda_handler`
+- `Save` and Test the event by clicking `Test` in the top right corner

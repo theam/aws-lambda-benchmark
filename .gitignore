@@ -1,3 +1,6 @@
+# serverless
+.serverless
+
 # Rust
 **/rust/**/target
 rust.zip

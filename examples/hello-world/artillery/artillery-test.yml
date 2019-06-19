@@ -20,3 +20,5 @@ scenarios:
         url: '/python-hello'
     - get:
         url: '/rust-hello'
+    - get:
+        url: '/ruby-hello'
