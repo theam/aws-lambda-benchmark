@@ -13,6 +13,7 @@ Note: We have tested all these functions with 1028 MB of memory
 - [Go](#go)
 - [Ruby](#ruby-25)
 - [C#](#c-net-21)
+- [F#](#f-net-21)
 
 ## Setting up Lambda IAM Role
 
@@ -205,3 +206,10 @@ end
 - Click "Save"
 - Test the function by clicking `Test` in the top right corner
 
+## F# .Net 2.1
+- Install [.Net](https://dotnet.microsoft.com/) in your machine
+- Install Amazon.Lambda.Tools Global Tools `dotnet tool install -g Amazon.Lambda.Tools`
+- Install `C#` extension for VSCode
+- Change directory to `examples/hello-world/fsharp`
+- Build the project, `dotnet build`
+- Deploy function, `dotnet lambda deploy-function <your-function-name>`

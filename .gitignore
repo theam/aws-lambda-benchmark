@@ -24,3 +24,6 @@ __pycache__
 **/dotnet21/bin
 **/dotnet21/obj
 **/dotnet21/**.zip
+**/fsharp/bin
+**/fsharp/obj
+**/fsharp/**.zip
