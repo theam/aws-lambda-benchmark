@@ -47,3 +47,7 @@ class ProductService:
             UpdateExpression="set #name = :n, #description = :d",
             ReturnValues="UPDATED_NEW"
         )
+    
+    def listItems(self):
+
+        return self.dynamoDBClient.scan()

@@ -61,6 +61,15 @@ functions:
           path: products
           method: put
           cors: true
+  
+  listProducts:
+    handler: functions/listProducts.handler
+    description: '[${self:provider.stage}] List products - CRUD Benchmark (Python)'
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
 
 resources:
   Resources:
