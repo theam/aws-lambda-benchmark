@@ -13,6 +13,7 @@ Cargo.lock
 Setup.hi
 Setup.o
 **.cabal
+**/haskell/**/**.zip
 
 # Java
 **/out

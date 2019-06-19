@@ -1,0 +1,10 @@
+resolver: lts-13.25
+
+packages:
+- .
+
+extra-deps:
+- github: theam/aws-lambda-haskell-runtime
+  commit: f46dd8b6a21f146f5f96bd0f6f852d713626a64e
+- git: git@github.com:theam/amazonka-attributevalue.git
+  commit: 3ed6418eff56e2496e7a255b214e14f0782d0fd4
