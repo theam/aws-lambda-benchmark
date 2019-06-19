@@ -1,0 +1,86 @@
+service: rest-api-python
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: ${opt:stage, 'dev'}
+  region: ${opt:region, 'us-east-1'}
+  environment:
+    PRODUCTS_TABLE_NAME: "${self:custom.productsTableName}"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:DeleteItem
+        - dynamodb:Query
+        - dynamodb:Scan
+      Resource:
+        - { Fn::GetAtt: [ProductsTable, Arn] }
+
+custom:
+  productsTableName: products-table-python-${self:provider.stage}
+
+functions:
+  getProduct:
+    handler: functions/getProduct.handler
+    description: '[${self:provider.stage}] Get products - CRUD Benchmark (Python)'
+    events:
+      - http:
+          path: products/{sku}
+          method: get
+          cors: true
+  createProduct:
+    handler: functions/createProduct.handler
+    description: '[${self:provider.stage}] Create product - CRUD Benchmark (Python)'
+    events:
+      - http:
+          path: products
+          method: post
+          cors: true
+  deleteProduct:
+    handler: functions/deleteProduct.handler
+    description: '[${self:provider.stage}] Delete product - CRUD Benchmark (Python)'
+    events:
+      - http:
+          path: products/{sku}
+          method: delete
+          cors: true
+  updateProduct:
+    handler: functions/updateProduct.handler
+    description: '[${self:provider.stage}] Update product - CRUD Benchmark (Python)'
+    events:
+      - http:
+          path: products
+          method: put
+          cors: true
+  
+  listProducts:
+    handler: functions/listProducts.handler
+    description: '[${self:provider.stage}] List products - CRUD Benchmark (Python)'
+    events:
+      - http:
+          path: products
+          method: get
+          cors: true
+
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.productsTableName}
+        AttributeDefinitions:
+          - AttributeName: sku
+            AttributeType: S
+        KeySchema:
+          - AttributeName: sku
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

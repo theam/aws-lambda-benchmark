@@ -16,3 +16,6 @@ Setup.o
 
 # Java
 **/out
+
+# Python
+__pycache__
