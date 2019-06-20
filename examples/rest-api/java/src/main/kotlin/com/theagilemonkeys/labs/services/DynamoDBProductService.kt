@@ -7,7 +7,7 @@ import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBScanExpression
 import com.amazonaws.services.dynamodbv2.model.AttributeValue
 import com.theagilemonkeys.labs.model.Product
 import java.io.IOException
-import java.util.HashMap
+import java.util.*
 
 class DynamoDBProductService: ProductService {
     private var dbMapper: DynamoDBMapper

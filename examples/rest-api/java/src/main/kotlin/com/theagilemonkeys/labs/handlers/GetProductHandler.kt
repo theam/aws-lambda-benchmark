@@ -1,11 +1,11 @@
 package com.theagilemonkeys.labs.handlers
 
-import com.amazonaws.services.lambda.runtime.Context
-import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.theagilemonkeys.labs.model.Product
-import com.theagilemonkeys.labs.responses.*
+import com.theagilemonkeys.labs.responses.ProductResponse
+import com.theagilemonkeys.labs.responses.generateErrorResponse
+import com.theagilemonkeys.labs.responses.generateOKResponse
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
