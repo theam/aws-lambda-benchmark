@@ -33,8 +33,8 @@ handler event context = do
       let skuAttributeValue = DynamoDB.attributeValue
             & set DynamoDB.avS sku
       let keys = HashMap.fromList [("sku", skuAttributeValue)]
-      let getItem = DynamoDB.getItem (Aws.toText tableName)
-            & set DynamoDB.giKey keys
-      Aws.send $ getItem
-  let item = res & view DynamoDB.girsItem
+      let deleteItem = DynamoDB.deleteItem (Aws.toText tableName)
+            & set DynamoDB.diKey keys
+      Aws.send $ deleteItem
+  let item = res & view DynamoDB.dirsAttributes
   return $ Right Response { statusCode = 200, body = (show item) }

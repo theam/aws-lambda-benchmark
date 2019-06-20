@@ -39,6 +39,18 @@ functions:
                   path: products
                   method: post
                   cors: true
+    deleteProduct:
+        runtime: provided
+        memorySize: 1024
+        description: "[${self:provider.stage}] Delete products - CRUD Benchmark (Haskell)"
+        handler: src/Lib.handler
+        package:
+            artifact: "functions/deleteProduct/build/deleteProduct.zip"
+        events:
+            - http:
+                  path: products/{sku}
+                  method: delete
+                  cors: true
 
 resources:
     Resources:
