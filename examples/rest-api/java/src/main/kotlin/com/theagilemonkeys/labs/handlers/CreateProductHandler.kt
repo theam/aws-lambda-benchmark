@@ -1,21 +1,19 @@
 package com.theagilemonkeys.labs.handlers
 
-import com.amazonaws.services.lambda.runtime.Context
-import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.theagilemonkeys.labs.model.Product
-import com.theagilemonkeys.labs.responses.*
+import com.theagilemonkeys.labs.responses.ProductResponse
+import com.theagilemonkeys.labs.responses.generateErrorResponse
+import com.theagilemonkeys.labs.responses.generateOKResponse
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
 
-class CreateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private val productService = ProductService()
-
-    override fun handleRequest(request: APIGatewayProxyRequestEvent, context: Context): APIGatewayProxyResponseEvent {
+class CreateProductHandler(private val productService: ProductService): ProductHandler {
+    override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             request.body ?: return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")
 
@@ -28,7 +26,7 @@ class CreateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGate
                 return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")
             }
 
-            val product = productService.createProduct(sku, name, description)
+            val product = productService.create(sku, name, description)
             generateOKResponse(ProductResponse(product))
 
         } catch (e: Exception) {
