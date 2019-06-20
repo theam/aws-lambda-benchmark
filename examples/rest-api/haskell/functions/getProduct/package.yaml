@@ -15,7 +15,6 @@ dependencies:
 - amazonka
 - amazonka-core
 - amazonka-dynamodb
-- amazonka-attributevalue
 - lens
 - text
 - unordered-containers
