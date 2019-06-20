@@ -28,7 +28,7 @@ A project that contains AWS Lambda function implementations for several runtimes
 
 ### CloudWatch Dashboard Screenshots
 **19-06-2019** [Screenshot](assets/performance/hello-world/hello-world-19-06-19.png)
-- Improvements in [Lambda Haskell Runtime](pending PR details)
+- Improvements in [Lambda Haskell Runtime](https://github.com/theam/aws-lambda-haskell-runtime/pull/30)
 - Added Ruby 2.5, C# and F# .NET 2.1 to Benchmarks
 
 **18-06-2019** [Screenshot](assets/performance/hello-world/hello-world-18-06-19.png)
