@@ -17,7 +17,7 @@ import           System.IO
 data Product = Product { name :: Text, sku :: Text, description :: Text }
   deriving (Generic, FromJSON, ToJSON)
 
-data Event = Event { pathParameters :: HashMap.HashMap Text Text, body :: (Maybe Text) }
+data Event = Event { pathParameters :: Maybe (HashMap.HashMap Text Text), body :: (Maybe Text) }
   deriving (Generic, FromJSON, ToJSON)
 
 data Response = Response { statusCode :: Int, body :: String }

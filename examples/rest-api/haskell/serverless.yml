@@ -21,11 +21,23 @@ functions:
         description: "[${self:provider.stage}] Get products - CRUD Benchmark (Haskell)"
         handler: src/Lib.handler
         package:
-            artifact: "functions/getProduct/build/function.zip"
+            artifact: "functions/getProduct/build/getProduct.zip"
         events:
             - http:
                   path: products/{sku}
                   method: get
+                  cors: true
+    createProduct:
+        runtime: provided
+        memorySize: 1024
+        description: "[${self:provider.stage}] Create product - CRUD Benchmark (Haskell)"
+        handler: src/Lib.handler
+        package:
+            artifact: "functions/createProduct/build/createProduct.zip"
+        events:
+            - http:
+                  path: products
+                  method: post
                   cors: true
 
 resources:
