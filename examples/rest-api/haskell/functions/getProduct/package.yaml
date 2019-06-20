@@ -41,3 +41,4 @@ default-extensions:
   - OverloadedStrings
   - DeriveGeneric
   - DeriveAnyClass
+  - DuplicateRecordFields

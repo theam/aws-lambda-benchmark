@@ -17,14 +17,14 @@ import           System.IO
 data Product = Product { name :: Text, sku :: Text, description :: Text }
   deriving (Generic, FromJSON, ToJSON)
 
-newtype Event = Event { resource :: String }
-  deriving (Generic, FromJSON)
+data Event = Event { pathParameters :: HashMap.HashMap Text Text, body :: Text }
+  deriving (Generic, FromJSON, ToJSON)
 
 data Response = Response { statusCode :: Int, body :: String }
   deriving (Generic, ToJSON)
 
 handler :: Event -> Aws.Lambda.Context -> IO (Either String Response)
-handler _ context = do
+handler event context = do
   tableName <- getEnv "PRODUCTS_TABLE_NAME"
   env <- Aws.newEnv Aws.Discover
   res <- Aws.runResourceT . Aws.runAWS env
