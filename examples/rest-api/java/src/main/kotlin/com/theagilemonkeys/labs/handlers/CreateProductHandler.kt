@@ -13,7 +13,7 @@ import org.apache.http.HttpStatus
 
 
 
-class CreateProductHandler(val productService: ProductService): ProductHandler {
+class CreateProductHandler(private val productService: ProductService): ProductHandler {
     override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             request.body ?: return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")

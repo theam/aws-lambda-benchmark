@@ -9,7 +9,7 @@ import com.theagilemonkeys.labs.responses.*
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
-class GetProductHandler(val productService: ProductService): ProductHandler  {
+class GetProductHandler(private val productService: ProductService): ProductHandler  {
     override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             val sku = request.pathParameters?.get(Product.SKU_FIELD)

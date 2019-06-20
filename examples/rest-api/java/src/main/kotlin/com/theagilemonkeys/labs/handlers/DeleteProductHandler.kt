@@ -8,7 +8,7 @@ import com.theagilemonkeys.labs.responses.generateOKResponse
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
-class DeleteProductHandler(val productService: ProductService): ProductHandler {
+class DeleteProductHandler(private val productService: ProductService): ProductHandler {
     override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             val sku = request.pathParameters?.get(Product.SKU_FIELD)

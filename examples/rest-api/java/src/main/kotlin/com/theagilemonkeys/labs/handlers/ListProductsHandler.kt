@@ -8,7 +8,7 @@ import com.theagilemonkeys.labs.responses.generateOKResponse
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
-class ListProductsHandler(val productService: ProductService): ProductHandler {
+class ListProductsHandler(private val productService: ProductService): ProductHandler {
     override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             val products = productService.getAll()
