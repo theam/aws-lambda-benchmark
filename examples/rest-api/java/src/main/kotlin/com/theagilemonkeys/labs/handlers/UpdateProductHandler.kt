@@ -1,7 +1,5 @@
 package com.theagilemonkeys.labs.handlers
 
-import com.amazonaws.services.lambda.runtime.Context
-import com.amazonaws.services.lambda.runtime.RequestHandler
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent
 import com.google.gson.Gson
@@ -13,10 +11,8 @@ import com.theagilemonkeys.labs.responses.generateOKResponse
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
-class UpdateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private val productService = ProductService()
-
-    override fun handleRequest(request: APIGatewayProxyRequestEvent, context: Context): APIGatewayProxyResponseEvent {
+class UpdateProductHandler (private val productService: ProductService): ProductHandler {
+    override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             val sku = request.pathParameters?.get(Product.SKU_FIELD)
             if (sku.isNullOrEmpty()) {
@@ -29,7 +25,7 @@ class UpdateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGate
             val name = requestBody.get(Product.NAME_FIELD)?.asString
             val description = requestBody.get(Product.DESCRIPTION_FIELD)?.asString
 
-            val product = productService.updateProduct(sku, name, description)
+            val product = productService.update(sku, name, description)
 
             generateOKResponse(ProductResponse(product))
 
