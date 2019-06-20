@@ -34,23 +34,23 @@ package:
 
 functions:
   listProducts:
-    handler: com.theagilemonkeys.labs.handlers.ListProductsHandler
+    handler: com.theagilemonkeys.labs.handlers.MainHandler
     events:
       - http: GET /products
   getProduct:
-    handler: com.theagilemonkeys.labs.handlers.GetProductHandler
+    handler: com.theagilemonkeys.labs.handlers.MainHandler
     events:
       - http: GET /product/{sku}
   createProduct:
-    handler: com.theagilemonkeys.labs.handlers.CreateProductHandler
+    handler: com.theagilemonkeys.labs.handlers.MainHandler
     events:
       - http: POST /product
   updateProduct:
-    handler: com.theagilemonkeys.labs.handlers.UpdateProductHandler
+    handler: com.theagilemonkeys.labs.handlers.MainHandler
     events:
       - http: PATCH /product/{sku}
   deleteProduct:
-    handler: com.theagilemonkeys.labs.handlers.DeleteProductHandler
+    handler: com.theagilemonkeys.labs.handlers.MainHandler
     events:
       - http: DELETE /product/{sku}
 

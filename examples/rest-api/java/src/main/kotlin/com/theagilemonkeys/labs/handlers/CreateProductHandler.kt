@@ -12,10 +12,9 @@ import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
 
-class CreateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private val productService = ProductService()
 
-    override fun handleRequest(request: APIGatewayProxyRequestEvent, context: Context): APIGatewayProxyResponseEvent {
+class CreateProductHandler(val productService: ProductService): ProductHandler {
+    override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             request.body ?: return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")
 
@@ -28,7 +27,7 @@ class CreateProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGate
                 return generateErrorResponse(errorCode = HttpStatus.SC_BAD_REQUEST, message = "Product sku and product name are required")
             }
 
-            val product = productService.createProduct(sku, name, description)
+            val product = productService.create(sku, name, description)
             generateOKResponse(ProductResponse(product))
 
         } catch (e: Exception) {

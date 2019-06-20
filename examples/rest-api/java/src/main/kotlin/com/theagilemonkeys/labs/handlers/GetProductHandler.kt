@@ -9,10 +9,8 @@ import com.theagilemonkeys.labs.responses.*
 import com.theagilemonkeys.labs.services.ProductService
 import org.apache.http.HttpStatus
 
-class GetProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyResponseEvent> {
-    private val productService = ProductService()
-
-    override fun handleRequest(request: APIGatewayProxyRequestEvent, context: Context): APIGatewayProxyResponseEvent {
+class GetProductHandler(val productService: ProductService): ProductHandler  {
+    override fun handle(request: APIGatewayProxyRequestEvent): APIGatewayProxyResponseEvent {
         return try {
             val sku = request.pathParameters?.get(Product.SKU_FIELD)
             if (sku.isNullOrEmpty()) {
@@ -20,7 +18,7 @@ class GetProductHandler : RequestHandler<APIGatewayProxyRequestEvent, APIGateway
                         message = "Error processing sku or sku not provided")
             }
 
-            val product = productService.getProduct(sku)
+            val product = productService.getBySku(sku)
 
             product?.let {
                 return generateOKResponse(ProductResponse(product))
