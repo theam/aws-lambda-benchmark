@@ -34,8 +34,7 @@ handler event context = do
     Nothing -> 
       return $ Right Response { statusCode = 500, body = "Invalid input" }
     Just product -> do
-      res <- Aws.runResourceT . Aws.runAWS env
-        $ do
+      res <- Aws.runResourceT . Aws.runAWS env $ do
           let skuAttributeValue = DynamoDB.attributeValue
                 & set DynamoDB.avS (Just (sku product))
           let nameAttributeValue = DynamoDB.attributeValue
