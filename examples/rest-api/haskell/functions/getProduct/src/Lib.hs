@@ -17,7 +17,7 @@ import           System.IO
 data Product = Product { name :: Text, sku :: Text, description :: Text }
   deriving (Generic, FromJSON, ToJSON)
 
-data Event = Event { pathParameters :: HashMap.HashMap Text Text, body :: Text }
+data Event = Event { pathParameters :: HashMap.HashMap Text Text, body :: (Maybe Text) }
   deriving (Generic, FromJSON, ToJSON)
 
 data Response = Response { statusCode :: Int, body :: String }
@@ -29,8 +29,9 @@ handler event context = do
   env <- Aws.newEnv Aws.Discover
   res <- Aws.runResourceT . Aws.runAWS env
     $ do
+      let sku = HashMap.lookup "sku" (pathParameters event)
       let skuAttributeValue = DynamoDB.attributeValue
-            & set DynamoDB.avS (Just "test")
+            & set DynamoDB.avS sku
       let keys = HashMap.fromList [("sku", skuAttributeValue)]
       let getItem = DynamoDB.getItem (Aws.toText tableName)
             & set DynamoDB.giKey keys
