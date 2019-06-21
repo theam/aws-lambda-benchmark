@@ -38,8 +38,8 @@ handler :: Event -> Aws.Lambda.Context -> IO (Either String Response)
 handler event context = do
   tableName <- getEnv "PRODUCTS_TABLE_NAME"
   env <- Aws.newEnv Aws.Discover
-  let jsonBody = body (event::Event)
-  let parsedProduct = (decode (ByteString.pack jsonBody) :: Maybe Product )
+  let jsonBody = body @Event event
+  let parsedProduct = decode @Product $ ByteString.pack jsonBody
   case parsedProduct of
     Nothing -> 
       return $ Right Response { statusCode = 500, body = "Invalid input" }
