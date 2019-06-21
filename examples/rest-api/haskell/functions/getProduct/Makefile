@@ -3,5 +3,5 @@ all:
 	@rm -rf ./build/*
 	@stack clean --docker
 	@stack build --docker
-	@cp `stack --docker path --local-install-root`/bin/{bootstrap,haskell_lambda} build
-	@cd build && zip getProduct.zip haskell_lambda bootstrap && rm haskell_lambda bootstrap && cd ..
+	@cp `stack --docker path --local-install-root`/bin/bootstrap build
+	@cd build && zip getProduct.zip bootstrap && rm bootstrap && cd ..
