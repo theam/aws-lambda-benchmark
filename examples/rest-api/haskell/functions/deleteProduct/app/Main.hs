@@ -4,4 +4,4 @@ import Aws.Lambda
 
 import qualified Lib
 
-configureLambda
+generateLambdaDispatcher

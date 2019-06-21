@@ -23,7 +23,7 @@ library:
   source-dirs: src
 
 executables:
-  haskell_lambda:
+  bootstrap:
     main:                Main.hs
     source-dirs:         app
     ghc-options:

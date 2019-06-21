@@ -42,7 +42,7 @@ functions:
     deleteProduct:
         runtime: provided
         memorySize: 1024
-        description: "[${self:provider.stage}] Delete products - CRUD Benchmark (Haskell)"
+        description: "[${self:provider.stage}] Delete product - CRUD Benchmark (Haskell)"
         handler: src/Lib.handler
         package:
             artifact: "functions/deleteProduct/build/deleteProduct.zip"
@@ -50,6 +50,18 @@ functions:
             - http:
                   path: products/{sku}
                   method: delete
+                  cors: true
+    listProducts:
+        runtime: provided
+        memorySize: 1024
+        description: "[${self:provider.stage}] List products - CRUD Benchmark (Haskell)"
+        handler: src/Lib.handler
+        package:
+            artifact: "functions/listProducts/build/listProducts.zip"
+        events:
+            - http:
+                  path: products
+                  method: get
                   cors: true
 
 resources:

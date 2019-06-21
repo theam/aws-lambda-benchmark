@@ -5,4 +5,4 @@ packages:
 
 extra-deps:
 - github: theam/aws-lambda-haskell-runtime
-  commit: f46dd8b6a21f146f5f96bd0f6f852d713626a64e
+  commit: a4f2ab4e9de8d8f3afd1810b0ba8cf5afa2444b6
