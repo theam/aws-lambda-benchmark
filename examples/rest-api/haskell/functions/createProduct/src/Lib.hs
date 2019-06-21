@@ -55,5 +55,5 @@ handler event context = do
           let putItem = DynamoDB.putItem (Aws.toText tableName)
                 & set DynamoDB.piItem keys
           Aws.send $ putItem
-      return $ Right Response { statusCode = 200, body = (show res) }
+      return $ Right Response { statusCode = 200, body = ByteString.unpack $ encode res }
   -- return $ Right Response { statusCode = 200, body = (body (event::Event)) }
