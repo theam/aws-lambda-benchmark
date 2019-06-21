@@ -15,13 +15,23 @@ import qualified Network.AWS.DynamoDB as DynamoDB
 import           Control.Lens
 import           System.IO
 
-data Product = Product { name :: (Maybe Text), sku :: Text, description :: (Maybe Text) }
+data Product = Product 
+  { name :: Maybe Text
+  , sku :: Text
+  , description :: Maybe Text
+  }
   deriving (Generic, FromJSON, ToJSON)
 
-data Event = Event { pathParameters :: (Maybe (HashMap.HashMap Text Text)), body :: String }
+data Event = Event 
+  { pathParameters :: Maybe (HashMap.HashMap Text Text)
+  , body :: String 
+  }
   deriving (Generic, FromJSON, ToJSON)
 
-data Response = Response { statusCode :: Int, body :: String }
+data Response = Response 
+  { statusCode :: Int
+  , body :: String 
+  }
   deriving (Generic, ToJSON)
 
 handler :: Event -> Aws.Lambda.Context -> IO (Either String Response)
