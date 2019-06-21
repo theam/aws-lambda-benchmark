@@ -24,7 +24,7 @@ functions:
             artifact: "functions/getProduct/build/getProduct.zip"
         events:
             - http:
-                  path: products/{sku}
+                  path: product/{sku}
                   method: get
                   cors: true
     createProduct:
@@ -34,7 +34,7 @@ functions:
             artifact: "functions/createProduct/build/createProduct.zip"
         events:
             - http:
-                  path: products
+                  path: product
                   method: post
                   cors: true
     deleteProduct:
@@ -44,7 +44,7 @@ functions:
             artifact: "functions/deleteProduct/build/deleteProduct.zip"
         events:
             - http:
-                  path: products/{sku}
+                  path: product/{sku}
                   method: delete
                   cors: true
     updateProduct:
@@ -54,7 +54,7 @@ functions:
             artifact: "functions/updateProduct/build/updateProduct.zip"
         events:
             - http:
-                  path: products
+                  path: product
                   method: put
                   cors: true
     listProducts:

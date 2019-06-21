@@ -34,7 +34,7 @@ functions:
     description: '[${self:provider.stage}] Get products - CRUD Benchmark (Python)'
     events:
       - http:
-          path: products/{sku}
+          path: product/{sku}
           method: get
           cors: true
   createProduct:
@@ -42,7 +42,7 @@ functions:
     description: '[${self:provider.stage}] Create product - CRUD Benchmark (Python)'
     events:
       - http:
-          path: products
+          path: product
           method: post
           cors: true
   deleteProduct:
@@ -50,7 +50,7 @@ functions:
     description: '[${self:provider.stage}] Delete product - CRUD Benchmark (Python)'
     events:
       - http:
-          path: products/{sku}
+          path: product/{sku}
           method: delete
           cors: true
   updateProduct:
@@ -58,7 +58,7 @@ functions:
     description: '[${self:provider.stage}] Update product - CRUD Benchmark (Python)'
     events:
       - http:
-          path: products
+          path: product
           method: put
           cors: true
   

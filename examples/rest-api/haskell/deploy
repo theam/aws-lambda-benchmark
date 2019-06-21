@@ -2,7 +2,7 @@
 
 trap 'kill 0' SIGINT
 
-array=( createProduct deleteProduct getProduct listProducts updateProduct)
+array=(createProduct deleteProduct getProduct listProducts updateProduct)
 for function in "${array[@]}"
 do
     echo -e "Building $function" &&

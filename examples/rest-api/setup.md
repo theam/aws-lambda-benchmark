@@ -29,3 +29,5 @@ Then
 - Go to the Haskell RestAPI directory, `cd examples/rest-api/haskell`
 - run `./deploy`
 > `Deploy` will build all the functions of the project and then deploy the stack through serverless framework.
+
+> Troubleshooting: If you experience some errors while building, try restarting Docker.

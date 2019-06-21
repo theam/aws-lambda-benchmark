@@ -1,6 +1,9 @@
 # serverless
 .serverless
 
+# artillery
+**/artillery/node_modules
+
 # Rust
 **/rust/**/target
 rust.zip
