@@ -2,6 +2,8 @@ service: rest-api-haskell
 
 provider:
     name: aws
+    memorySize: 1024
+    runtime: provided
     stage: ${opt:stage, 'dev'}
     region: ${opt:region, 'us-east-1'}
     role: { Fn::GetAtt: [HaskellCrudRole, Arn] }
@@ -16,8 +18,6 @@ package:
 
 functions:
     getProduct:
-        runtime: provided
-        memorySize: 1024
         description: "[${self:provider.stage}] Get products - CRUD Benchmark (Haskell)"
         handler: src/Lib.handler
         package:
@@ -28,8 +28,6 @@ functions:
                   method: get
                   cors: true
     createProduct:
-        runtime: provided
-        memorySize: 1024
         description: "[${self:provider.stage}] Create product - CRUD Benchmark (Haskell)"
         handler: src/Lib.handler
         package:
@@ -40,8 +38,6 @@ functions:
                   method: post
                   cors: true
     deleteProduct:
-        runtime: provided
-        memorySize: 1024
         description: "[${self:provider.stage}] Delete product - CRUD Benchmark (Haskell)"
         handler: src/Lib.handler
         package:
@@ -51,9 +47,17 @@ functions:
                   path: products/{sku}
                   method: delete
                   cors: true
+    updateProduct:
+        description: "[${self:provider.stage}] Update product - CRUD Benchmark (Haskell)"
+        handler: src/Lib.handler
+        package:
+            artifact: "functions/updateProduct/build/updateProduct.zip"
+        events:
+            - http:
+                  path: products
+                  method: put
+                  cors: true
     listProducts:
-        runtime: provided
-        memorySize: 1024
         description: "[${self:provider.stage}] List products - CRUD Benchmark (Haskell)"
         handler: src/Lib.handler
         package:
