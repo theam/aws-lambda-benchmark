@@ -44,15 +44,16 @@ handler event context = do
               & set DynamoDB.avS (name product)
         let descriptionAttributeValue = DynamoDB.attributeValue
               & set DynamoDB.avS (description product)
-        let uiExpressionAttributeValues = HashMap.fromList [(":sku", skuAttributeValue), (":name", nameAttributeValue), (":description", descriptionAttributeValue)]
+        let uiExpressionAttributeValues = HashMap.fromList [(":name", nameAttributeValue), (":description", descriptionAttributeValue)]
         
         let skuAttributeValue = DynamoDB.attributeValue
               & set DynamoDB.avS (Just (sku product))
-        let uiKey = HashMap.fromList [("sku", skuAttributeValue)]
+        let uiKey = HashMap.fromList [("sku" :: Text, skuAttributeValue)]
         
         let updateItem = DynamoDB.updateItem (Aws.toText tableName)
               & set DynamoDB.uiExpressionAttributeNames uiExpressionAttributeNames
               & set DynamoDB.uiUpdateExpression uiUpdateExpression
               & set DynamoDB.uiExpressionAttributeValues uiExpressionAttributeValues
+              & set DynamoDB.uiKey uiKey
         Aws.send $ updateItem
       return $ Right Response { statusCode = 200, body = (show res) }
