@@ -1,0 +1,21 @@
+#!/bin/bash
+
+trap terminate SIGINT
+terminate(){
+    pkill -SIGINT -P $$
+    exit
+}
+
+echo -e 'Building createProduct' && make -C ./functions/createProduct/ &
+
+echo 'Building deleteProduct' && make -C ./functions/deleteProduct/ &
+
+echo 'Building getProduct' && make -C ./functions/getProduct/ &
+
+echo 'Building listProducts' && make -C ./functions/listProducts/ &
+
+echo 'Building updateProduct' && make -C ./functions/updateProduct/ &
+
+wait
+
+echo 'functions successfully built, starting deployment' && sls deploy
