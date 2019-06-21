@@ -43,3 +43,4 @@ default-extensions:
   - DeriveGeneric
   - DeriveAnyClass
   - DuplicateRecordFields
+  - TypeApplications
