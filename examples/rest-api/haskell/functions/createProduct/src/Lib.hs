@@ -38,7 +38,7 @@ handler :: Event -> Aws.Lambda.Context -> IO (Either String Response)
 handler event context = do
   tableName <- getEnv "PRODUCTS_TABLE_NAME"
   env <- Aws.newEnv Aws.Discover
-  let jsonBody = body (event::Event)
+  let jsonBody = body @Event event
   let parsedProduct = decode @Product $ ByteString.pack jsonBody
   case parsedProduct of
     Nothing -> 
