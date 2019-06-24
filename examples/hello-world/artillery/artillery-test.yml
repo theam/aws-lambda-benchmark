@@ -11,8 +11,6 @@ scenarios:
     - get:
         url: '/haskell-hello'
     - get:
-        url: '/haskell-optimized-hello'
-    - get:
         url: '/java-hello'
     - get:
         url: '/js-hello'
