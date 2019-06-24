@@ -1,0 +1,35 @@
+# We're excited that this project has provided you enough value that you are looking at its code!
+#
+# This is a standard [Serverless Framework](https://www.serverless.com) project and you should
+# feel welcome to customize it to your needs and delight.
+#
+# If you do something super cool and would like to share the capability, please open a PR against
+# https://www.github.com/Nordstrom/serverless-artillery.
+#
+# Thanks!
+
+# If the following value is changed, your service may be duplicated (this value is used to build the CloudFormation
+# Template script's name)
+service: serverless-artillery-mfeBwy3fa
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+       - "lambda:InvokeFunction"
+      Resource:
+        "Fn::Join":
+          - ':'
+          -
+            - "arn:aws:lambda"
+            - Ref: "AWS::Region"
+            - Ref: "AWS::AccountId"
+            - "function"
+            - "${self:service}-${opt:stage, self:provider.stage}-loadGenerator*" # must match function name
+
+functions:
+  loadGenerator: # !!Do not edit this name!!
+    handler: handler.handler    # the serverlessArtilleryLoadTester handler() method can be found in the handler.js source file
+    timeout: 300                # set timeout to be 5 minutes (max for Lambda)

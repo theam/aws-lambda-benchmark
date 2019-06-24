@@ -1,6 +1,9 @@
 # serverless
 .serverless
 
+# artillery
+**/artillery/node_modules
+
 # Rust
 **/rust/**/target
 rust.zip
@@ -9,10 +12,11 @@ Cargo.lock
 
 # Haskell
 .stack-work
-**/hello-world/**/build
+**/**/build
 Setup.hi
 Setup.o
 **.cabal
+**/haskell/**/**.zip
 
 # Java
 **/out

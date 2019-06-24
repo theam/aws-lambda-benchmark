@@ -1,0 +1,10 @@
+{
+  "description": "A load generator function implementation",
+  "repository": "n/a",
+  "license": "All rights reserved for deployer.",
+  "dependencies": {
+    "artillery-core": "^2.0.3-0",
+    "casual": "^1.6.2",
+    "csv-parse": "^1.1.7"
+  }
+}

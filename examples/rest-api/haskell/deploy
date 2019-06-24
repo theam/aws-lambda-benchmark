@@ -1,0 +1,15 @@
+#!/bin/bash
+
+trap 'kill 0' SIGINT
+
+array=(createProduct deleteProduct getProduct listProducts updateProduct)
+for function in "${array[@]}"
+do
+    echo -e "Building $function" &&
+    rm -rf ./functions/$function/build &&
+    make -C ./functions/$function/ &
+done
+
+wait
+
+echo 'functions successfully built, starting deployment' && sls deploy
