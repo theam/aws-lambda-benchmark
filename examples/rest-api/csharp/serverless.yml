@@ -1,8 +1,8 @@
-service: rest-api-python
+﻿service: rest-api-csharp
 
 provider:
     name: aws
-    runtime: python3.6
+    runtime: dotnetcore2.1
     stage: ${opt:stage, 'dev'}
     region: ${opt:region, 'us-east-1'}
     environment:
@@ -22,49 +22,66 @@ provider:
               - dynamodb:DeleteItem
               - dynamodb:Query
               - dynamodb:Scan
+              - dynamodb:DescribeTable
           Resource:
               - { Fn::GetAtt: [ProductsTable, Arn] }
 
 custom:
-    productsTableName: products-table-python-${self:provider.stage}
+    productsTableName: products-table-csharp-${self:provider.stage}
+
+package:
+    individually: true
 
 functions:
     getProduct:
-        handler: functions/getProduct.handler
-        description: "[${self:provider.stage}] Get products - CRUD Benchmark (Python)"
+        handler: CsharpRestApi::RestApi.GetProduct::Handler
+        description: "[${self:provider.stage}] Get product - CRUD Benchmark (C#)"
+        package:
+            artifact: bin/release/netcoreapp2.1/csharp-rest-api.zip
         events:
             - http:
                   path: product/{sku}
                   method: get
                   cors: true
+
     createProduct:
-        handler: functions/createProduct.handler
-        description: "[${self:provider.stage}] Create product - CRUD Benchmark (Python)"
+        handler: CsharpRestApi::RestApi.CreateProduct::Handler
+        description: "[${self:provider.stage}] Create product - CRUD Benchmark (C#)"
+        package:
+            artifact: bin/release/netcoreapp2.1/csharp-rest-api.zip
         events:
             - http:
                   path: product
                   method: post
                   cors: true
-    deleteProduct:
-        handler: functions/deleteProduct.handler
-        description: "[${self:provider.stage}] Delete product - CRUD Benchmark (Python)"
-        events:
-            - http:
-                  path: product/{sku}
-                  method: delete
-                  cors: true
+      
     updateProduct:
-        handler: functions/updateProduct.handler
-        description: "[${self:provider.stage}] Update product - CRUD Benchmark (Python)"
+        handler: CsharpRestApi::RestApi.UpdateProduct::Handler
+        description: "[${self:provider.stage}] Create product - CRUD Benchmark (C#)"
+        package:
+            artifact: bin/release/netcoreapp2.1/csharp-rest-api.zip
         events:
             - http:
                   path: product
                   method: put
                   cors: true
-
+      
+    deleteProduct:
+        handler: CsharpRestApi::RestApi.DeleteProduct::Handler
+        description: "[${self:provider.stage}] Delete product - CRUD Benchmark (C#)"
+        package:
+            artifact: bin/release/netcoreapp2.1/csharp-rest-api.zip
+        events:
+            - http:
+                  path: product/{sku}
+                  method: delete
+                  cors: true
+      
     listProducts:
-        handler: functions/listProducts.handler
-        description: "[${self:provider.stage}] List products - CRUD Benchmark (Python)"
+        handler: CsharpRestApi::RestApi.ListProducts::Handler
+        description: "[${self:provider.stage}] List products - CRUD Benchmark (C#)"
+        package:
+            artifact: bin/release/netcoreapp2.1/csharp-rest-api.zip
         events:
             - http:
                   path: products

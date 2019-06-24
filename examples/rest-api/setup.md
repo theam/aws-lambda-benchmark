@@ -5,6 +5,7 @@ In this example we will deploy functions to be able to read/write/delete/update 
 - [Java](#java)
 - [Python](#python)
 - [Haskell](#haskell)
+- [C#](#c)
 
 ## Java
 
@@ -31,3 +32,24 @@ Then
 > `Deploy` will build all the functions of the project and then deploy the stack through serverless framework.
 
 > Troubleshooting: If you experience some errors while building, try restarting Docker.
+
+## C#
+- Install DotNet 2.1 if you don't have it
+- Install Serverless Framework and configure it
+```bash
+npm install --global serverless
+```
+or
+```bash
+yarn add global serverless
+```
+- Change directory to `examples/rest-api/csharp`
+- Run the following script:
+```bash
+./deploy.sh
+```
+alternativelly, you could also run
+```bash
+./build.sh
+sls deploy
+```
