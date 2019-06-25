@@ -108,6 +108,8 @@ Run a quick test that will perform 10 rps per second during 10 seconds coming fr
 
 `artillery quick --duration 10 --rate 10 -n 1 https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/dev/nodejs-hello`
 
+optional `-o <your-file.json>` could be added if you want the report to be output to a json file.
+
 ### Automated Testing Approach
 Go to the example artillery directory, e.g. `cd examples/hello-world/artillery`
 
@@ -116,6 +118,9 @@ and then run the following command:
 `slsart invoke -p artillery-test.yml`
 
 This will trigger a set requests for each of the languages we are currently benchmarking in the `hello-world` example.
+
+If you want the output to be dump to a file, unfortunately, there is no optional parameter `-o` in Serverless Artillery, we will need to dump the console output to a file as follow:
+`slsart invoke -p artillery-test.yml > results.json`
 
 ## Creating a Dashboard using AWS CloudWatch
 AWS CloudWatch is the service where you could find Analytics about your Lambda function. Information about execution time, # invocations, # errors or # throttles. Go to `AWS CloudWatch` in the AWS Console.
