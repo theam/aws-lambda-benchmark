@@ -35,6 +35,7 @@ plugins:
 functions:
     getProduct:
         handler: src/functions/GetProduct.handler
+        description: "[${self:provider.stage}] Get product - CRUD Benchmark (Node.js)"
         events:
             - http:
                   path: product/{sku}
@@ -42,6 +43,7 @@ functions:
                   cors: true
     createProduct:
         handler: src/functions/CreateProduct.handler
+        description: "[${self:provider.stage}] Create product - CRUD Benchmark (Node.js)"
         events:
             - http:
                   path: product
@@ -49,6 +51,7 @@ functions:
                   cors: true
     updateProduct:
         handler: src/functions/UpdateProduct.handler
+        description: "[${self:provider.stage}] Update product - CRUD Benchmark (Node.js)"
         events:
             - http:
                   path: product
@@ -56,6 +59,7 @@ functions:
                   cors: true
     deleteProduct:
         handler: src/functions/DeleteProduct.handler
+        description: "[${self:provider.stage}] Delete product - CRUD Benchmark (Node.js)"
         events:
             - http:
                   path: product/{sku}
@@ -63,6 +67,7 @@ functions:
                   cors: true
     listProducts:
         handler: src/functions/ListProducts.handler
+        description: "[${self:provider.stage}] List products - CRUD Benchmark (Node.js)"
         events:
             - http:
                   path: products
