@@ -7,6 +7,7 @@ A project that contains AWS Lambda function implementations for several runtimes
 - [Triggering your function through API Gateway](#Triggering-your-function-through-API-Gateway)
 - [Using Artillery for testing](#Using-Artillery-for-testing)
 - [Creating a Dashboard using AWS CloudWatch](#Creating-a-Dashboard-using-AWS-CloudWatch)
+    - [Custom CloudWatch Dashboard Widgets](#Custom-CloudWatch-Dashboard-Widgets)
 
 ## Examples
 [Hello World HOW-TO](examples/hello-world/setup.md)
@@ -126,3 +127,20 @@ In this example, we selected the following metrics:
 
 ![](assets/cloudwatch/cloudwatch-lambda-metrics-selection.png)
 
+### Custom CloudWatch Dashboard Widgets
+
+![](assets/cloudwatch/cloudwatch-custom-widget.png)
+
+Custom Widgets can be created out of information extracted from Lambda Logs. These metrics are extracted through Queries, for example:
+```bash
+filter @message like /(?i)(Init Duration)/
+| parse "REPORT RequestId: *Duration: * ms\tBilled Duration: * ms \tMemory Size: * MB\tMax Memory Used: * MB" as RequestId, Duration,BilledDuration,MemorySize,MaxMemoryUsed
+| parse Duration "Duration: *" as actualDuration
+| stats max(actualDuration) as ColdStart, max(MaxMemoryUsed) as MaximumMemoryUsed, max(MemorySize) - max(MaxMemoryUsed) as OverProvisionedMemory
+```
+
+The above example will perform the following actions:
+- Filter logs that contain "Init Duration"
+- Parse the logs and extract variables
+- Parse the variable `Duration` to extract actual duration
+- Display stats from variables
