@@ -44,7 +44,7 @@ Then
 
 > Troubleshooting: If you experience some errors while building, try restarting Docker.
 
-## C
+## C#
 
 -   Install DotNet 2.1 if you don't have it
 -   Install Serverless Framework and configure it
