@@ -30,6 +30,9 @@ A project that contains AWS Lambda function implementations for several runtimes
 **Notes: 1024 MB of memory**
 
 ### CloudWatch Dashboard Screenshots
+**25-06-2019** [Screenshot With Cold Start](assets/performance/hello-world/hello-world-25-06-19-with-coldstart.png)  and [Screenshot Without Cold Start](assets/performance/hello-world/hello-world-25-06-19-without-coldstart.png)
+- Created new CloudWatch Dashboard to reflect the duration through Line Graphs
+
 **19-06-2019** [Screenshot](assets/performance/hello-world/hello-world-19-06-19.png)
 - Improvements in [Lambda Haskell Runtime](https://github.com/theam/aws-lambda-haskell-runtime/pull/30)
 - Added Ruby 2.5, C# and F# .NET 2.1 to Benchmarks

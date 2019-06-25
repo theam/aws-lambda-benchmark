@@ -2,7 +2,7 @@ config:
   target: 'https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/labs'
   phases:
     - duration: 600
-      arrivalRate: 10
+      arrivalRate: 30
       number: 1
 scenarios:
   - flow:
