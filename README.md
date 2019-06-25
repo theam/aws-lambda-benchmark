@@ -12,18 +12,17 @@ A project that contains AWS Lambda function implementations for several runtimes
 ## Examples
 [Hello World HOW-TO](examples/hello-world/setup.md)
 
-|**Runtime**|**Best Cold Start**|**Worst Cold Start**|**execution time**|
-|-------|---------------|----------------|------------------|
-|**Haskell**|132 ms|139 ms|12.50 ms|
-|**Haskell Optimized**|60.30 ms|--|0.86 ms|
-|**Java**|790 ms|**812 ms**|0.89 ms|
-|**Nodejs**|3.85 ms|43.8 ms| 0.26 ms|
-|**Go**|**1.39 ms**|7.60 ms|0.25 ms|
-|**Rust**|39.1 ms|58.7 ms|0.70 ms|
-|**Python**|15.9 ms|33.2 ms|0.22 ms|
-|**Ruby**|11.5 ms|--|1.42 ms|
-|**C# .NET 2.1**|631 ms|--|**0.17 ms**|
-|**F# .NET 2.1**|528 ms|--|0.22 ms|
+|**Runtime**|**Best Cold Start**|**Worst Cold Start**|**execution time**|**Max memory used**|
+|-------|---------------|----------------|------------------|---------|
+|**Haskell**|60.30 ms|98.38 ms|0.86 ms|48 MB|
+|**Java**|790 ms|**812 ms**|0.89 ms|109 MB|
+|**Nodejs**|3.85 ms|43.8 ms| 0.26 ms|66 MB|
+|**Go**|**1.39 ms**|7.60 ms|0.25 ms|48 MB|
+|**Rust**|39.1 ms|58.7 ms|0.70 ms|**34 MB**|
+|**Python**|15.9 ms|33.2 ms|0.22 ms|50 MB|
+|**Ruby**|11.5 ms|--|1.42 ms|51 MB|
+|**C# .NET 2.1**|631 ms|--|**0.17 ms**|83 MB|
+|**F# .NET 2.1**|528 ms|--|0.22 ms|84 MB|
 
 **Notes: 1024 MB of memory**
 
