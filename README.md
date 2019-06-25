@@ -39,6 +39,21 @@ A project that contains AWS Lambda function implementations for several runtimes
 
 [CRUD HOW-TO](examples/rest-api/setup.md)
 
+
+|**Runtime**|**Haskell**|**Java**|**Nodejs**|**Python**|**C# .NET 2.1**|**Go**|
+|-----------|-----------|--------|----------|----------|---------------|------|
+|**Create**|173 ms|6.40 ms|7.24 ms|6.28 ms|**4.75 ms**|--|
+|**Get**|170 ms |6.13 ms|5.87 ms|4.29 ms|**3.56 ms**|--|
+|**List**|150 ms|8.20 ms|9.25 ms|7.34 ms|**6.84 ms**|--|
+|**APIGW worst latency**|10.80 s|14.10 s|**10.00 s**|10.60 s|11.80 s|--|
+|**APIGW latency average**|248 ms|595 ms|**39 ms**|41.80 ms|186 ms|--|
+
+### Notes:
+- **API Gateway Latency** is the actual duration of the HTTP Request
+
+**25-06-2019** [Screenshot](assets/performance/rest-api/rest-api-25-06-19.png)
+- Baseline
+
 ---
 
 ## Manually deploying Lambda functions
