@@ -1,0 +1,11 @@
+#!/bin/bash
+
+slsart deploy
+
+wait
+
+slsart invoke --path tests/csharp.yml&
+slsart invoke --path tests/haskell.yml&
+slsart invoke --path tests/java.yml&
+slsart invoke --path tests/nodejs.yml&
+slsart invoke --path tests/python.yml&

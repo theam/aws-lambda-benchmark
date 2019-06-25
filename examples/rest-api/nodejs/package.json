@@ -1,0 +1,29 @@
+{
+	"name": "rest-api-nodejs",
+	"version": "1.0.0",
+	"description": "A serverless CRUD that uses nodejs 8.10 runtime",
+	"main": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "The Agile Monkeys",
+	"keywords": [
+		"node",
+		"typescript",
+		"lambda",
+		"CRUD"
+	],
+	"license": "ISC",
+	"devDependencies": {
+		"@types/aws-lambda": "^8.10.27",
+		"@types/node": "^12.0.10",
+		"aws-sdk": "^2.481.0",
+		"serverless": "^1.45.1",
+		"serverless-webpack": "^5.3.1",
+		"source-map-support": "^0.5.12",
+		"ts-loader": "^6.0.4",
+		"ts-node": "^8.3.0",
+		"typescript": "^3.5.2",
+		"webpack": "^4.35.0"
+	}
+}

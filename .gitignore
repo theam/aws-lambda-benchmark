@@ -31,3 +31,7 @@ __pycache__
 **/fsharp/bin
 **/fsharp/obj
 **/fsharp/**.zip
+
+# NodeJS
+dist
+node_modules

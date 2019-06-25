@@ -1,0 +1,84 @@
+service: rest-api-nodejs
+
+provider:
+    name: aws
+    runtime: nodejs8.10
+    stage: ${opt:stage, 'dev'}
+    region: ${opt:region, 'us-east-1'}
+    environment:
+        PRODUCTS_TABLE_NAME: "${self:custom.productsTableName}"
+    iamRoleStatements:
+        - Effect: Allow
+          Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+          Resource: "*"
+        - Effect: Allow
+          Action:
+              - dynamodb:UpdateItem
+              - dynamodb:PutItem
+              - dynamodb:GetItem
+              - dynamodb:DeleteItem
+              - dynamodb:Query
+              - dynamodb:Scan
+              - dynamodb:DescribeTable
+          Resource:
+              - { Fn::GetAtt: [ProductsTable, Arn] }
+
+custom:
+    productsTableName: products-table-nodejs-${self:provider.stage}
+
+plugins:
+    - serverless-webpack
+
+functions:
+    getProduct:
+        handler: src/functions/GetProduct.handler
+        events:
+            - http:
+                  path: product/{sku}
+                  method: get
+                  cors: true
+    createProduct:
+        handler: src/functions/CreateProduct.handler
+        events:
+            - http:
+                  path: product
+                  method: post
+                  cors: true
+    updateProduct:
+        handler: src/functions/UpdateProduct.handler
+        events:
+            - http:
+                  path: product
+                  method: put
+                  cors: true
+    deleteProduct:
+        handler: src/functions/DeleteProduct.handler
+        events:
+            - http:
+                  path: product/{sku}
+                  method: delete
+                  cors: true
+    listProducts:
+        handler: src/functions/ListProducts.handler
+        events:
+            - http:
+                  path: products
+                  method: get
+                  cors: true
+
+resources:
+    Resources:
+        ProductsTable:
+            Type: AWS::DynamoDB::Table
+            Properties:
+                TableName: ${self:custom.productsTableName}
+                AttributeDefinitions:
+                    - AttributeName: sku
+                      AttributeType: S
+                KeySchema:
+                    - AttributeName: sku
+                      KeyType: HASH
+                BillingMode: PAY_PER_REQUEST
