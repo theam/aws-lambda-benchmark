@@ -2,10 +2,12 @@
 
 slsart deploy
 
-wait
+dt=`date '+%d-%m-%Y_%H-%M-%S'`
 
-slsart invoke --path tests/csharp.yml&
-slsart invoke --path tests/haskell.yml&
-slsart invoke --path tests/java.yml&
-slsart invoke --path tests/nodejs.yml&
-slsart invoke --path tests/python.yml&
+slsart invoke --path tests/csharp.yml > "results/${dt}-csharp.json" &
+slsart invoke --path tests/haskell.yml > "results/${dt}-haskell.json" &
+slsart invoke --path tests/java.yml > "results/${dt}-java.json" &
+slsart invoke --path tests/nodejs.yml > "results/${dt}-nodejs.json" &
+slsart invoke --path tests/python.yml > "results/${dt}-python.json" &
+
+wait

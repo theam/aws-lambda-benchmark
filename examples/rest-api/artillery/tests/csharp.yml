@@ -1,7 +1,7 @@
 config:
     target: "https://e78xhr5pjb.execute-api.us-east-1.amazonaws.com/dev"
     phases:
-        - duration: 60
+        - duration: 1
           arrivalRate: 20
     processor: "./processor.js"
 scenarios:
