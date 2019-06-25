@@ -2,6 +2,8 @@
 A project that contains AWS Lambda function implementations for several runtimes e.g. Nodejs, Haskell, Python, Go, Rust, Java, etc.
 
 - [Examples and Performance](#examples)
+    - [Hello World](#hello-world)
+    - [CRUD](#crud)
 - [CloudWatch Dashboard Screenshots](#cloudwatch-dashboard-screenshots)
 - [Manually Deploying Lambda function](#Manually-deploying-Lambda-functions)
 - [Triggering your function through API Gateway](#Triggering-your-function-through-API-Gateway)
@@ -10,6 +12,7 @@ A project that contains AWS Lambda function implementations for several runtimes
     - [Custom CloudWatch Dashboard Widgets](#Custom-CloudWatch-Dashboard-Widgets)
 
 ## Examples
+### Hello World
 [Hello World HOW-TO](examples/hello-world/setup.md)
 
 |**Runtime**|**Best Cold Start**|**Worst Cold Start**|**execution time**|**Max memory used**|
@@ -37,6 +40,7 @@ A project that contains AWS Lambda function implementations for several runtimes
 **17-06-2019** [Screenshot](assets/performance/hello-world/hello-world-17-06-19.png)
 - Baseline
 
+### CRUD
 [CRUD HOW-TO](examples/rest-api/setup.md)
 
 
