@@ -1,0 +1,70 @@
+service: rest-api-java-2
+
+provider:
+  name: aws
+  runtime: java8
+  stage: ${opt:stage, 'dev'}
+  region: ${self:provider.environment.REGION}
+  environment:
+    REGION: us-east-1
+    PRODUCTS_TABLE_NAME: "${self:custom.productsTableName}"
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - dynamodb:UpdateItem
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:DeleteItem
+        - dynamodb:Query
+        - dynamodb:Scan
+      Resource:
+        - { Fn::GetAtt: [ProductsTable, Arn] }
+
+custom:
+   productsTableName: products-table-java-2-${self:provider.stage}
+
+package:
+  artifact: build/libs/rest-api-java-dev-all.jar
+
+functions:
+  listProducts:
+    handler: com.theagilemonkeys.labs.handlers.ListProductsHandler::handle
+    events:
+      - http: GET /products
+  getProduct:
+    handler: com.theagilemonkeys.labs.handlers.GetProductHandler::handle
+    events:
+      - http: GET /product/{sku}
+  createProduct:
+    handler: com.theagilemonkeys.labs.handlers.CreateProductHandler::handle
+    events:
+      - http: POST /product
+  updateProduct:
+    handler: com.theagilemonkeys.labs.handlers.UpdateProductHandler::handle
+    events:
+      - http: PATCH /product/{sku}
+  deleteProduct:
+    handler: com.theagilemonkeys.labs.handlers.DeleteProductHandler::handle
+    events:
+      - http: DELETE /product/{sku}
+
+
+resources:
+  Resources:
+    ProductsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:custom.productsTableName}
+        AttributeDefinitions:
+          - AttributeName: sku
+            AttributeType: S
+        KeySchema:
+          - AttributeName: sku
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
