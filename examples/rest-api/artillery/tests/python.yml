@@ -1,31 +1,31 @@
 config:
-    target: "https://ftb5q8efpa.execute-api.us-east-1.amazonaws.com/dev"
-    phases:
-        - duration: 1
-          arrivalRate: 20
-    processor: "./processor.js"
+  target: "https://<your-api-gateway>.execute-api.us-east-1.amazonaws.com/dev"
+  phases:
+    - duration: 1
+      arrivalRate: 20
+  processor: "./processor.js"
 scenarios:
-    - flow:
-          - function: "provisionTestData"
-          - post:
-                url: "/product"
-                json:
-                    sku: "{{sku}}"
-                    name: "{{name}}"
-                    description: "{{description}}"
-          - get:
-                url: "/products"
-          - put:
-                url: "/product"
-                json:
-                    sku: "{{sku}}"
-                    name: "{{name}}"
-                    description: "{{description}}"
-          - get:
-                url: "/product/{{sku}}"
-          - delete:
-                url: "/product/{{sku}}"
-                json:
-                    sku: "{{sku}}"
-                    name: "{{newName}}"
-                    description: "{{newDescription}}"
+  - flow:
+      - function: "provisionTestData"
+      - post:
+          url: "/product"
+          json:
+            sku: "{{sku}}"
+            name: "{{name}}"
+            description: "{{description}}"
+      - get:
+          url: "/products"
+      - put:
+          url: "/product"
+          json:
+            sku: "{{sku}}"
+            name: "{{name}}"
+            description: "{{description}}"
+      - get:
+          url: "/product/{{sku}}"
+      - delete:
+          url: "/product/{{sku}}"
+          json:
+            sku: "{{sku}}"
+            name: "{{newName}}"
+            description: "{{newDescription}}"

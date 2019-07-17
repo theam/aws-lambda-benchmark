@@ -1,7 +1,7 @@
 config:
   target: "https://<your-api-gateway>.execute-api.us-east-1.amazonaws.com/dev"
   phases:
-    - duration: 1
+    - duration: 1200
       arrivalRate: 20
   processor: "./processor.js"
 scenarios:

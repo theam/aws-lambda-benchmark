@@ -1,5 +1,5 @@
 config:
-  target: 'https://0c9lfg7004.execute-api.us-east-1.amazonaws.com/labs'
+  target: 'https://<your-api-gateway>.execute-api.us-east-1.amazonaws.com/labs'
   phases:
     - duration: 600
       arrivalRate: 30
