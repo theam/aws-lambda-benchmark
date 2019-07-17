@@ -80,6 +80,8 @@ First of all, you will need to follow [this post](https://aws.amazon.com/blogs/d
 
 Then, you will need to update the `deploy-optimized-layer.sh` under `examples/rest-api/csharp-lambda-layer` with the ARN of the layer you just created. Finally, execute the above script and create an API Gateway to point to the functions you just deployed.
 
+You will also need to create a DynamoDB table in the same region named `products-table-csharp-with-layer-dev`
+
 ## Node.js (TypeScript)
 
 - Install Node.js 8.10
