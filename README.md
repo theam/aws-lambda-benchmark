@@ -1,4 +1,5 @@
-# aws-lambda-benchmark
+# AWS Lambda Benchmark
+
 A project that contains AWS Lambda function implementations for several runtimes e.g. Nodejs, Haskell, Python, Go, Rust, Java, etc.
 
 - [Examples and Performance](#examples)
@@ -48,7 +49,7 @@ A project that contains AWS Lambda function implementations for several runtimes
 
 
 |**Runtime**|**Haskell**|**Java**|**Nodejs**|**Python**|**C# .NET 2.1**|**C# (optimized layer)**|**Go**|
-|-----------|-----------|--------|----------|----------|---------------|------|
+|-----------|-----------|--------|----------|----------|---------------|------------------------|------|
 |**Create**|173 ms|6.40 ms|7.24 ms|6.28 ms|**4.75 ms**|4.81 ms|--|
 |**Get**|170 ms |6.13 ms|5.87 ms|4.29 ms|**3.56 ms**|**3.54 ms**|--|
 |**List**|150 ms|8.20 ms|9.25 ms|7.34 ms|**6.84 ms**|**5.99 ms**|--|

@@ -1,9 +1,12 @@
 # Hello world Example
+
 In this example we will just deploy manually a function in AWS Lambda with our desired runtime. Some of the runtimes will be custom, as a result, it will require a bit more work.
 
 Note: We have tested all these functions with 1028 MB of memory
 
+
 ## Runtime Index
+
 - [Nodejs 8.10](#nodejs-810)
 - [Python 3.6](#python-36)
 - [Java](#java)
@@ -15,11 +18,13 @@ Note: We have tested all these functions with 1028 MB of memory
 - [C#](#c-net-21)
 - [F#](#f-net-21)
 
+
 ## Setting up Lambda IAM Role
 
 We need to create a very basic IAM Role that we will assign to each of the functions we create. We will go to `IAM Role` in the AWS Console to get started.
 
 In order to allow logging we will add the following `CloudWatch Logs` permissions to the IAM role:
+
 ```
 logs:CreateLogStream
 logs:CreateLogGroup
@@ -27,6 +32,7 @@ logs:PutLogEvents
 ```
 
 Additionally, we will also need to define a `Trust Relationships` in order to allow API Gateway to invoke our function:
+
 ```
 {
   "Version": "2012-10-17",
@@ -46,54 +52,53 @@ Additionally, we will also need to define a `Trust Relationships` in order to al
 }
 ```
 
+
 ## Nodejs 8.10
+
 - Create a `Function from Scratch` and choose a name for the function, e.g. `benchmark-nodejs-hello`
 - Choose the correct runtime `Node.js 8.10`
 - Select the `execution role` that you just created above
 - Click `Create the function`
-- Paste the following code
-```
-exports.handler = async (event, context, callback) => {
-
-    var response = {
-        statusCode: 200,
-        body: JSON.stringify("hello"),
-        isBase64Encoded: false
-    };
-    
-    callback(null, response)
-};
+- Paste the following code:
 
 ```
+exports.handler = async () => ({
+  statusCode: 200,
+  body: `"hello"`,
+  isBase64Encoded: false
+});
+```
+
 - Input the `Handler`
 `index.handler`
 - `Save` and Test the event by clicking `Test` in the top right corner
 
+
 ## Python 3.6
+
 - Create a `Function from Scratch` and choose a name for the function, e.g. `benchmark-python-hello`
 - Choose the correct runtime `Python 3.6`
 - Select the `execution role` that you just created above
 - Click `Create the function`
-- Paste the following code
+- Paste the following code:
 
 ```
-exports.handler = async (event, context, callback) => {
+import json
 
-    var response = {
-        statusCode: 200,
-        body: JSON.stringify("hello"),
-        isBase64Encoded: false
-    };
-    
-    callback(null, response)
-};
+def lambda_handler(event, context):
+    return {
+        'statusCode': 200,
+        'body': json.dumps('Hello')
+    }
 ```
 
 - Input the `Handler`
 `lambda_function.lambda_handler`
 - `Save` and Test the event by clicking `Test` in the top right corner
 
+
 ## Java
+
 - First of all, install [Gradle](https://gradle.org/install/)
 - Change directory to `examples/hello-world/java`
 - Build the project, `gradle build`
@@ -106,7 +111,9 @@ exports.handler = async (event, context, callback) => {
 - Click `Save`
 - Test the function by clicking `Test` in the top right corner
 
+
 ## Rust
+
 - First of all, install [Cargo](https://doc.rust-lang.org/cargo/getting-started/installation.html)
 - Install musl-cross `brew install filosottile/musl-cross/musl-cross`
 - Set link: `ln -s /usr/local/bin/x86_64-linux-musl-gcc /usr/local/bin/musl-gcc`
@@ -122,7 +129,9 @@ exports.handler = async (event, context, callback) => {
 
 **Note: In this function we do not need to specify the handler since all you need is in the binary**
 
+
 ## Haskell
+
 - First of all, install [Stack](https://docs.haskellstack.org/en/stable/README/)
 - Install [Docker](https://docs.docker.com/docker-for-mac/install/)
 - Download Docker Stack image `docker pull fpco/stack-build:lts-13.25`
@@ -135,34 +144,41 @@ exports.handler = async (event, context, callback) => {
 - Enter `src/Lib.handler` as the `Handler`
 - Click `Save` and then Test the function by clicking `Test` in the top right corner
 
+
 ## Haskell runtime Bootstrapped
 
+TODO
+
+
 ## Go
+
 - Install [Go](https://golang.org/dl/)
 - Create a `hello.go` file with the following content:
-```go
+
+```
 package main
 
 import "github.com/aws/aws-lambda-go/lambda"
 
 type Response struct {
-	StatusCode      int    `json:"statusCode"`
-	Body            string `json:"body"`
-	IsBase64Encoded bool   `json:"isBase64Encoded"`
+    StatusCode      int    `json:"statusCode"`
+    Body            string `json:"body"`
+    IsBase64Encoded bool   `json:"isBase64Encoded"`
 }
 
 func hello() (Response, error) {
-	return Response{
-		StatusCode:      200,
-		Body:            "Hello world",
-		IsBase64Encoded: false,
-	}, nil
+    return Response{
+        StatusCode:      200,
+        Body:            "Hello world",
+        IsBase64Encoded: false,
+    }, nil
 }
 
 func main() {
-	lambda.Start(hello)
+    lambda.Start(hello)
 }
 ```
+
 - Build the program for AWS Lambda: `GOOS=linux GOARCH=amd64 go build hello.go`
 - Zip the binnary: `zip hello.zip ./hello
 - Go to `AWS Lambda` in AWS Console and create a new function from scratch
@@ -173,7 +189,9 @@ func main() {
 - Click "Save"
 - Test the function by clicking `Test` in the top right corner
 
+
 ## Ruby 2.5
+
 - Create a `Function from Scratch` and choose a name for the function, e.g. `benchmark-python-hello`
 - Choose the correct runtime `Ruby 2.5`
 - Select the `execution role` that you just created above
@@ -192,8 +210,10 @@ end
 `lambda_function.lambda_handler`
 - `Save` and Test the event by clicking `Test` in the top right corner
 
-## C# .Net 2.1
-- Install [.Net](https://dotnet.microsoft.com/) in your machine
+
+## C# .NET 2.1
+
+- Install [.NET](https://dotnet.microsoft.com/) in your machine
 - Install `C#` extension for VSCode
 - Change directory to `examples/hello-world/dotnet21`
 - Build the project, `dotnet build`
@@ -206,8 +226,10 @@ end
 - Click "Save"
 - Test the function by clicking `Test` in the top right corner
 
-## F# .Net 2.1
-- Install [.Net](https://dotnet.microsoft.com/) in your machine
+
+## F# .NET 2.1
+
+- Install [.NET](https://dotnet.microsoft.com/) in your machine
 - Install Amazon.Lambda.Tools Global Tools `dotnet tool install -g Amazon.Lambda.Tools`
 - Install `C#` extension for VSCode
 - Change directory to `examples/hello-world/fsharp`
